@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 ../../.tmp
 index.css
 index.css.map
+=======
+index.css
+index.css.map
+../../.gitignore
+>>>>>>> feature/html

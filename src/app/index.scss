@@ -1,16 +1,220 @@
+$background-color: #A0B6DB;
+$green-border-color: #4C5B0A;
+$icon-background-color: #DFEAA6;
+$icon-border: #491530;
+body {
+    background-image: url(../assets/images/commercial-airplane-taking-off-and-high-resolution_227318.png);
+    background-size: 280%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    width: 100%;
+}
+
+.container-fluid {
+    padding: 0;
+}
+
+.catch_phrase {
+    color: #9D9D9D;
+    font-size: .5em;
+}
+
+.jumbotron {
+    //    display: none;
+    background-color: rgba(232, 235, 236, 0.5);
+}
+
+.icon-label {
+    text-align: center;
+    margin: 0 auto;
+    font-size: 2em;
+    width: 100%;
+    display: block;
+}
+
+.icon-anchor {
+    padding: 2em 1ex;
+    margin: 2ex 0;
+}
+
+.icon {
+    margin: 1em 0;
+    border: $icon-border solid 0.25ex;
+    border-radius: 5em;
+    width: 10%;
+    padding: 0.3ex;
+    background-color: $icon-background-color;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: middle;
+    -webkit-transform: scale(1.5);
+}
+
+.icon:hover {
+    background-color: #D4E76F;
+    box-shadow: 0 0 20px #9B396B;
+}
+
+.active {
+    box-shadow: 0 0 20px #9B396B;
+    background-color: #A0B6DA;
+    transition-duration: .5s;
+}
+
+.active:hover {
+    background-color: #7099D9;
+    box-shadow: 0 0 20px #481530;
+}
+
+.icon-search {
+    height: 1.5em;
+    position: absolute;
+    margin-left: 5%;
+}
+
+.icon-tag {
+    position: absolute;
+    display: inline;
+    margin: 1em 0 0 -15vw;
+    color: white;
+    width: 2em;
+    word-wrap: normal;
+    font-size: 1.2em;
+    line-height: .9em;
+    text-align: center;
+    text-shadow: #041E42 2px 0;
+}
+
+.plus-tag {
+    margin: 5% 0 0 -12.8vw;
+    font-size: 1em;
+}
+
+.icon-row {
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+}
+
+.budget {
+    background-image: url(../../assets/images/blank.png);
+}
+
+a:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.search-button {
+    border: solid 0.1em black;
+    padding: 1ex;
+    border-radius: 0.5ex;
+    margin: 1em 1ex;
+    text-align: center;
+    display: block;
+    background-color: #204B8A;
+    color: black;
+}
+
+.search-button:hover {
+    color: white;
+    background-color: #7099D9;
+    transition-duration: 0.3s;
+    box-shadow: 0 0 20px white;
+}
+
+.form-box {
+    margin: 30% auto auto auto;
+    padding: 1ex 0;
+    width: 100%;
+    background-color: rgba(232, 235, 236, .5);
+}
+
+.results-box {
+    background-color: rgba(232, 235, 236, .5);
+    margin: 30% auto auto auto;
+    width: 100%;
+}
+
+.results-nav-icons {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.results-nav-icons > a {
+    width: 2em;
+}
+
+td {
+    border-bottom: black solid 2px;
+}
+
+.nav-footer {
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+}
+
+.nav-footer a img:hover {
+    box-shadow: 0 0 20px #481530;
+}
+
+.order-view {
+    //    display: none;
+}
+
+.results-view {
+    //    display: none;
+}
+
+@media screen and (min-width: 767px) {
+    background-size: 100%;
+}
+
+@media screen and (min-width: 991px) {
+    //    .icon {
+    //        border: $icon-border solid 0.1ex;
+    //        border-radius: 5em;
+    //        height: 8em;
+    //        padding: 0.5ex;
+    //    }
+    body {
+        background-size: 120%;
+    }
+    .form-box {
+        margin: 5% auto;
+        border-radius: 5px;
+        padding-bottom: 1em;
+        padding: 1ex;
+        width: 50%;
+    }
+    .icon {
+        border: $icon-border solid 0.5ex;
+        border-radius: 5em;
+        margin: 2em 1ex;
+        position: relative;
+        display: inline-block;
+        overflow: hidden;
+        vertical-align: middle;
+        -webkit-transform: scale(1.5);
+    }
+}
+
 .browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
 }
 
 .thumbnail {
-  height: 200px;
-
-  img.pull-right {
-    width: 50px;
-  }
+    height: 200px;
+    img.pull-right {
+        width: 50px;
+    }
 }
+
 // injector
 // endinjector
