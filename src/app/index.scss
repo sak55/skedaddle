@@ -4,7 +4,7 @@ $icon-background-color: #DFEAA6;
 $icon-border: #491530;
 body {
     background-image: url(../assets/images/commercial-airplane-taking-off-and-high-resolution_227318.png);
-    background-size: 260%;
+    background-size: 280%;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center center;
@@ -13,6 +13,11 @@ body {
 
 .container-fluid {
     padding: 0;
+}
+
+.catch_phrase {
+    color: #9D9D9D;
+    font-size: .5em;
 }
 
 .jumbotron {
@@ -32,6 +37,15 @@ body {
     height: 4.1em;
     padding: 0.5ex;
     background-color: $icon-background-color;
+    position: relative;
+    font-size: 2em;
+}
+
+.icon-tag {
+    position: absolute;
+    display: inline;
+    margin: 1em -2.4em;
+    color: white;
 }
 
 .icon-row {
@@ -77,16 +91,30 @@ li {
 }
 
 .form-box {
-    display: none;
+    //    display: none;    
     margin: 30% auto auto auto;
     padding: 1ex 0;
     width: 100%;
     background-color: rgba(232, 235, 236, .5);
 }
+
 .results-box {
     background-color: rgba(232, 235, 236, .5);
     margin: 30% auto auto auto;
+    width: 100%;
+}
 
+.results-nav-icons {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.results-nav-icons > a {
+    width: 2em;
+}
+
+.results-table {
+    margin: 0 auto;
 }
 
 @media (min-width: 767px) {

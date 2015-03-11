@@ -1,12 +1,13 @@
 <div class="container-fluid">
 
-<!--<div ng-include="'components/navbar/navbar.html'"></div>-->
+    <!--<div ng-include="'components/navbar/navbar.html'"></div>-->
 
     <!--Container-->
     <header>
         <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">Skedaddle</a>
+                <a class="navbar-brand" href="#">
+                    <em class="catch_phrase">when you've just gotta... </em> Skedaddle</a>
             </div>
         </nav>
     </header>
@@ -20,6 +21,7 @@
             </p>
         </div>
 
+        <!-- Order View -->
         <div class="form-box">
             <div class="icon-label">
                 <label>Destination</label>
@@ -41,7 +43,7 @@
                     <img class="budget-icon icon" src="../../assets/images/bag.png">
                 </a>
                 <a href="#">
-                    <img class="budget-icon icon" src="../../assets/images/poker4.png">
+                    <img class="icon" src="../../assets/images/poker4.png">
                 </a>
             </div>
             <div class="icon-label">
@@ -67,8 +69,63 @@
                     <img class="budget-icon icon" src="../../assets/images/500.png">
                 </a>
             </div>
-            <a href="#" class="search-button">Search</a>
+            <a href="#" class="search-button">Search <img src="../../assets/images/magnifying-glass32.png"></a>
         </div>
+        <!-- Order View -->
+        <!-- Results View -->
+        <div class="form-box">
+            <div class="icon-row">
+                <a href="#"><img class="icon active" src="../../assets/images/mountain13.png">
+                </a>
+                <a href="#"><img class="icon active" src="../../assets/images/500.png">
+                </a>
+                <a href="#">
+                    <img class="icon active" src="../../assets/images/magnifying-glass32.png">
+                    <div class="icon-tag">new </div>
+                </a>
+            </div>
+            <table class="results-table">
+                <tr>
+                    <th>Desitination</th>
+                    <th>Departs</th>
+                    <th>Returns</th>
+                    <th>.CLICK it</th>
+                </tr>
+                <tr>
+                    <td>{{City}}, {{State}}</td>
+                    <td>{{d_date}}, {{d_time}}</td>
+                    <td>{{r_date}}, {{r_time}}</td>
+                    <td>{{ICON LINK}}</td>
+                </tr>
+                <tr>
+                    <td>{{City}}, {{State}}</td>
+                    <td>{{d_date}}, {{d_time}}</td>
+                    <td>{{r_date}}, {{r_time}}</td>
+                    <td>{{ICON LINK}}</td>
+                </tr>
+                <tr>
+                    <td>{{City}}, {{State}}</td>
+                    <td>{{d_date}}, {{d_time}}</td>
+                    <td>{{r_date}}, {{r_time}}</td>
+                    <td>{{ICON LINK}}</td>
+                </tr>
+                <tr>
+                    <td>{{City}}, {{State}}</td>
+                    <td>{{d_date}}, {{d_time}}</td>
+                    <td>{{r_date}}, {{r_time}}</td>
+                    <td>{{ICON LINK}}</td>
+                </tr>
+                <tr>
+                    <td>{{City}}, {{State}}</td>
+                    <td>{{d_date}}, {{d_time}}</td>
+                    <td>{{r_date}}, {{r_time}}</td>
+                    <td>{{ICON LINK}}</td>
+                </tr>
+            </table>
+
+        </div>
+        <!-- Results View -->
+
     </section>
 
     <footer>
