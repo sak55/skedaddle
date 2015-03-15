@@ -39,7 +39,7 @@ body {
 }
 
 .icon {
-    margin: 1em 0;
+    margin: 1em 0.1ex;
     border: $icon-border solid 0.25ex;
     border-radius: 5em;
     width: 10%;
@@ -109,13 +109,14 @@ a:hover {
 
 .search-button {
     border: solid 0.1em black;
-    padding: 1ex;
-    border-radius: 0.5ex;
-    margin: 1em 1ex;
+    padding: 2em 1ex 2em 1ex;
+    border-radius: 1ex;
+    margin: 10em 2em 2em 2em;
     text-align: center;
     display: block;
     background-color: #204B8A;
     color: black;
+    font-size: 1.5em;
 }
 
 .search-button:hover {
@@ -126,7 +127,7 @@ a:hover {
 }
 
 .form-box {
-    margin: 30% auto auto auto;
+    margin: 12% auto auto auto;
     padding: 1ex 0;
     width: 100%;
     background-color: rgba(232, 235, 236, .5);

@@ -12,7 +12,7 @@ angular.module('skedaddle', ['ngAnimate', 'ngCookies', 'ngSanitize', 'restangula
             .state('order', {
                 url: '/order',
                 templateUrl: 'app/order/order.html',
-                contrller: 'OrderCtrl',
+                controller: 'OrderCtrl',
                 controllerAs: 'order'
             });
 

@@ -1,0 +1,27 @@
+{
+    "request": {
+        "slice": [
+            {
+                "origin": "MCO",
+                "destination": "ATL",
+                "date": "2015-03-16",
+                "maxStops": 0
+      },
+            {
+                "origin": "ATL",
+                "destination": "MCO",
+                "date": "2015-03-18"
+      }
+    ],
+        "passengers": {
+            "adultCount": 1,
+            "infantInLapCount": 0,
+            "infantInSeatCount": 0,
+            "childCount": 0,
+            "seniorCount": 0
+        },
+        "solutions": 10,
+        "maxPrice": "400",
+        "refundable": false
+    }
+}
