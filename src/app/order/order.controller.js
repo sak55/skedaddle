@@ -2,36 +2,36 @@
 
 angular.module('skedaddle')
     .controller('OrderCtrl', function () {
-        //            $(document).ready(function () {
+        console.log("YO I WORK!!");
+        this.datas = flightResults;
+
+        //        var data = $.getJSON("../app/flights.json", function (populatedFlights) {
+        //                console.log("success");
+        //            })
+        //            .done(function () {
+        //                console.log("second success");
+        //            })
+        //            .fail(function () {
+        //                console.log("error");
+        //            })
+        //            .always(function () {
+        //                console.log("complete");
+        //            }); //
+        //        // Perform other work here ...
+        //
+        //        // Set another completion function for the request above
+        //        data.complete(function () {
+        //            console.log("second complete");
+        //        });
+        //
 
 
-        var request, flightResult, price, tripItinerary,
+        var flightResults, price, tripItinerary,
             flightLength, details, airlineCode, flightNum,
             PlacesAndTimes, arrivalTime, destination, departureTime,
-            destination;
-
-        var data = $.getJSON("data.json", function (populatedFlights) {
-                console.log("success");
-            })
-            .done(function () {
-                console.log("second success");
-            })
-            .fail(function () {
-                console.log("error");
-            })
-            .always(function () {
-                console.log("complete");
-            });
-
-        // Perform other work here ...
-
-        // Set another completion function for the request above
-        data.complete(function () {
-            console.log("second complete");
-        });
-
+            destination, origin;
         //object
-        request = {
+        var requests = {
             "kind": "qpxExpress#tripsSearch",
             "trips": {
                 "kind": "qpxexpress#tripOptions",
@@ -44,109 +44,109 @@ angular.module('skedaddle')
                             "code": "ATL",
                             "city": "ATL",
                             "name": "Atlanta Hartsfield-Jackson ATL"
-    },
+            },
                         {
                             "kind": "qpxexpress#airportData",
                             "code": "CLT",
                             "city": "CLT",
                             "name": "Charlotte Douglas"
-    },
+            },
                         {
                             "kind": "qpxexpress#airportData",
                             "code": "MCO",
                             "city": "ORL",
                             "name": "Orlando International"
-    },
+            },
                         {
                             "kind": "qpxexpress#airportData",
                             "code": "MIA",
                             "city": "MIA",
                             "name": "Miami International"
-    }
-   ],
+            }
+           ],
                     "city": [
                         {
                             "kind": "qpxexpress#cityData",
                             "code": "ATL",
                             "name": "Atlanta"
-    },
+            },
                         {
                             "kind": "qpxexpress#cityData",
                             "code": "CLT",
                             "name": "Charlotte"
-    },
+            },
                         {
                             "kind": "qpxexpress#cityData",
                             "code": "MIA",
                             "name": "Miami"
-    },
+            },
                         {
                             "kind": "qpxexpress#cityData",
                             "code": "ORL",
                             "name": "Orlando"
-    }
-   ],
+            }
+           ],
                     "aircraft": [
                         {
                             "kind": "qpxexpress#aircraftData",
                             "code": "319",
                             "name": "Airbus A319"
-    },
+            },
                         {
                             "kind": "qpxexpress#aircraftData",
                             "code": "320",
                             "name": "Airbus A320"
-    },
+            },
                         {
                             "kind": "qpxexpress#aircraftData",
                             "code": "321",
                             "name": "Airbus A321"
-    },
+            },
                         {
                             "kind": "qpxexpress#aircraftData",
                             "code": "752",
                             "name": "Boeing 757"
-    },
+            },
                         {
                             "kind": "qpxexpress#aircraftData",
                             "code": "763",
                             "name": "Boeing 767"
-    }
-   ],
+            }
+           ],
                     "tax": [
                         {
                             "kind": "qpxexpress#taxData",
                             "id": "ZP",
                             "name": "US Flight Segment Tax"
-    },
+            },
                         {
                             "kind": "qpxexpress#taxData",
                             "id": "XF",
                             "name": "US Passenger Facility Charge"
-    },
+            },
                         {
                             "kind": "qpxexpress#taxData",
                             "id": "US_001",
                             "name": "US Transportation Tax"
-    },
+            },
                         {
                             "kind": "qpxexpress#taxData",
                             "id": "AY_001",
                             "name": "US September 11th Security Fee"
-    }
-   ],
+            }
+           ],
                     "carrier": [
                         {
                             "kind": "qpxexpress#carrierData",
                             "code": "F9",
                             "name": "Frontier Airlines, Inc."
-    },
+            },
                         {
                             "kind": "qpxexpress#carrierData",
                             "code": "US",
                             "name": "US Airways, Inc."
-    }
-   ]
+            }
+           ]
                 },
                 "tripOption": [
                     {
@@ -185,12 +185,12 @@ angular.module('skedaddle')
                                                 "mileage": 404,
                                                 "meal": "Food and Beverages for Purchase",
                                                 "secure": true
-         }
-        ]
-       }
-      ]
-     }
-    ],
+                 }
+                ]
+               }
+              ]
+             }
+            ],
                         "pricing": [
                             {
                                 "kind": "qpxexpress#pricingInfo",
@@ -202,8 +202,8 @@ angular.module('skedaddle')
                                         "origin": "ORL",
                                         "destination": "ATL",
                                         "basisCode": "Q00PXS5"
-       }
-      ],
+               }
+              ],
                                 "segmentPricing": [
                                     {
                                         "kind": "qpxexpress#segmentPricing",
@@ -213,10 +213,10 @@ angular.module('skedaddle')
                                             {
                                                 "kind": "qpxexpress#freeBaggageAllowance",
                                                 "pieces": 0
-         }
-        ]
-       }
-      ],
+                 }
+                ]
+               }
+              ],
                                 "baseFareTotal": "USD78.98",
                                 "saleFareTotal": "USD78.98",
                                 "saleTaxTotal": "USD20.02",
@@ -233,7 +233,7 @@ angular.module('skedaddle')
                                         "code": "US",
                                         "country": "US",
                                         "salePrice": "USD5.92"
-       },
+               },
                                     {
                                         "kind": "qpxexpress#taxInfo",
                                         "id": "AY_001",
@@ -241,7 +241,7 @@ angular.module('skedaddle')
                                         "code": "AY",
                                         "country": "US",
                                         "salePrice": "USD5.60"
-       },
+               },
                                     {
                                         "kind": "qpxexpress#taxInfo",
                                         "id": "XF",
@@ -249,7 +249,7 @@ angular.module('skedaddle')
                                         "code": "XF",
                                         "country": "US",
                                         "salePrice": "USD4.50"
-       },
+               },
                                     {
                                         "kind": "qpxexpress#taxInfo",
                                         "id": "ZP",
@@ -257,14 +257,14 @@ angular.module('skedaddle')
                                         "code": "ZP",
                                         "country": "US",
                                         "salePrice": "USD4.00"
-       }
-      ],
+               }
+              ],
                                 "fareCalculation": "MCO F9 ATL 78.98Q00PXS5 USD 78.98 END ZP MCO XT 5.92US 4.00ZP 5.60AY 4.50XF MCO4.50",
                                 "latestTicketingTime": "2015-03-14T17:30-04:00",
                                 "ptc": "ADT"
-     }
-    ]
-   },
+             }
+            ]
+           },
                     {
                         "kind": "qpxexpress#tripOption",
                         "saleTotal": "USD245.10",
@@ -299,10 +299,10 @@ angular.module('skedaddle')
                                                 "onTimePerformance": 100,
                                                 "mileage": 469,
                                                 "secure": true
-         }
-        ],
+                 }
+                ],
                                         "connectionDuration": 53
-       },
+               },
                                     {
                                         "kind": "qpxexpress#segmentInfo",
                                         "duration": 80,
@@ -329,12 +329,12 @@ angular.module('skedaddle')
                                                 "onTimePerformance": 81,
                                                 "mileage": 226,
                                                 "secure": true
-         }
-        ]
-       }
-      ]
-     }
-    ],
+                 }
+                ]
+               }
+              ]
+             }
+            ],
                         "pricing": [
                             {
                                 "kind": "qpxexpress#pricingInfo",
@@ -346,8 +346,8 @@ angular.module('skedaddle')
                                         "origin": "ORL",
                                         "destination": "ATL",
                                         "basisCode": "GA00XNH1"
-       }
-      ],
+               }
+              ],
                                 "segmentPricing": [
                                     {
                                         "kind": "qpxexpress#segmentPricing",
@@ -362,30 +362,30 @@ angular.module('skedaddle')
                                                         "commercialName": "ASSISTIVE DEVICES",
                                                         "count": 0,
                                                         "subcode": "0GM"
-           },
+                   },
                                                     {
                                                         "kind": "qpxexpress#bagDescriptor",
                                                         "commercialName": "INFANT CAR SEAT",
                                                         "count": 0,
                                                         "description": [
-             "Infant Car Seat"
-            ],
+                     "Infant Car Seat"
+                    ],
                                                         "subcode": "0G5"
-           },
+                   },
                                                     {
                                                         "kind": "qpxexpress#bagDescriptor",
                                                         "commercialName": "STROLLER OR PUSHCHAIR",
                                                         "count": 0,
                                                         "description": [
-             "Stroller/Pushchair"
-            ],
+                     "Stroller/Pushchair"
+                    ],
                                                         "subcode": "0F4"
-           }
-          ],
+                   }
+                  ],
                                                 "pieces": 0
-         }
-        ]
-       },
+                 }
+                ]
+               },
                                     {
                                         "kind": "qpxexpress#segmentPricing",
                                         "fareId": "AD595E3sgAQ8qIgPMnEERU8LY0UQAx+blHarKryGs6Jo",
@@ -399,31 +399,31 @@ angular.module('skedaddle')
                                                         "commercialName": "ASSISTIVE DEVICES",
                                                         "count": 0,
                                                         "subcode": "0GM"
-           },
+                   },
                                                     {
                                                         "kind": "qpxexpress#bagDescriptor",
                                                         "commercialName": "INFANT CAR SEAT",
                                                         "count": 0,
                                                         "description": [
-             "Infant Car Seat"
-            ],
+                     "Infant Car Seat"
+                    ],
                                                         "subcode": "0G5"
-           },
+                   },
                                                     {
                                                         "kind": "qpxexpress#bagDescriptor",
                                                         "commercialName": "STROLLER OR PUSHCHAIR",
                                                         "count": 0,
                                                         "description": [
-             "Stroller/Pushchair"
-            ],
+                     "Stroller/Pushchair"
+                    ],
                                                         "subcode": "0F4"
-           }
-          ],
+                   }
+                  ],
                                                 "pieces": 0
-         }
-        ]
-       }
-      ],
+                 }
+                ]
+               }
+              ],
                                 "baseFareTotal": "USD208.37",
                                 "saleFareTotal": "USD208.37",
                                 "saleTaxTotal": "USD36.73",
@@ -440,7 +440,7 @@ angular.module('skedaddle')
                                         "code": "US",
                                         "country": "US",
                                         "salePrice": "USD15.63"
-       },
+               },
                                     {
                                         "kind": "qpxexpress#taxInfo",
                                         "id": "AY_001",
@@ -448,7 +448,7 @@ angular.module('skedaddle')
                                         "code": "AY",
                                         "country": "US",
                                         "salePrice": "USD5.60"
-       },
+               },
                                     {
                                         "kind": "qpxexpress#taxInfo",
                                         "id": "XF",
@@ -456,7 +456,7 @@ angular.module('skedaddle')
                                         "code": "XF",
                                         "country": "US",
                                         "salePrice": "USD7.50"
-       },
+               },
                                     {
                                         "kind": "qpxexpress#taxInfo",
                                         "id": "ZP",
@@ -464,14 +464,14 @@ angular.module('skedaddle')
                                         "code": "ZP",
                                         "country": "US",
                                         "salePrice": "USD8.00"
-       }
-      ],
+               }
+              ],
                                 "fareCalculation": "ORL US X/CLT US ATL Q ORLATL18.60 189.77GA00XNH1 USD 208.37 END ZP MCO CLT XT 15.63US 8.00ZP 5.60AY 7.50XF MCO4.50 CLT3.00",
                                 "latestTicketingTime": "2015-03-15T23:59-04:00",
                                 "ptc": "ADT"
-     }
-    ]
-   },
+             }
+            ]
+           },
                     {
                         "kind": "qpxexpress#tripOption",
                         "saleTotal": "USD245.10",
@@ -506,10 +506,10 @@ angular.module('skedaddle')
                                                 "onTimePerformance": 94,
                                                 "mileage": 469,
                                                 "secure": true
-         }
-        ],
+                 }
+                ],
                                         "connectionDuration": 69
-       },
+               },
                                     {
                                         "kind": "qpxexpress#segmentInfo",
                                         "duration": 76,
@@ -536,12 +536,12 @@ angular.module('skedaddle')
                                                 "onTimePerformance": 84,
                                                 "mileage": 226,
                                                 "secure": true
-         }
-        ]
-       }
-      ]
-     }
-    ],
+                 }
+                ]
+               }
+              ]
+             }
+            ],
                         "pricing": [
                             {
                                 "kind": "qpxexpress#pricingInfo",
@@ -553,8 +553,8 @@ angular.module('skedaddle')
                                         "origin": "ORL",
                                         "destination": "ATL",
                                         "basisCode": "GA00XNH1"
-       }
-      ],
+               }
+              ],
                                 "segmentPricing": [
                                     {
                                         "kind": "qpxexpress#segmentPricing",
@@ -569,30 +569,30 @@ angular.module('skedaddle')
                                                         "commercialName": "ASSISTIVE DEVICES",
                                                         "count": 0,
                                                         "subcode": "0GM"
-           },
+                   },
                                                     {
                                                         "kind": "qpxexpress#bagDescriptor",
                                                         "commercialName": "INFANT CAR SEAT",
                                                         "count": 0,
                                                         "description": [
-             "Infant Car Seat"
-            ],
+                     "Infant Car Seat"
+                    ],
                                                         "subcode": "0G5"
-           },
+                   },
                                                     {
                                                         "kind": "qpxexpress#bagDescriptor",
                                                         "commercialName": "STROLLER OR PUSHCHAIR",
                                                         "count": 0,
                                                         "description": [
-             "Stroller/Pushchair"
-            ],
+                     "Stroller/Pushchair"
+                    ],
                                                         "subcode": "0F4"
-           }
-          ],
+                   }
+                  ],
                                                 "pieces": 0
-         }
-        ]
-       },
+                 }
+                ]
+               },
                                     {
                                         "kind": "qpxexpress#segmentPricing",
                                         "fareId": "AD595E3sgAQ8qIgPMnEERU8LY0UQAx+blHarKryGs6Jo",
@@ -606,31 +606,31 @@ angular.module('skedaddle')
                                                         "commercialName": "ASSISTIVE DEVICES",
                                                         "count": 0,
                                                         "subcode": "0GM"
-           },
+                   },
                                                     {
                                                         "kind": "qpxexpress#bagDescriptor",
                                                         "commercialName": "INFANT CAR SEAT",
                                                         "count": 0,
                                                         "description": [
-             "Infant Car Seat"
-            ],
+                     "Infant Car Seat"
+                    ],
                                                         "subcode": "0G5"
-           },
+                   },
                                                     {
                                                         "kind": "qpxexpress#bagDescriptor",
                                                         "commercialName": "STROLLER OR PUSHCHAIR",
                                                         "count": 0,
                                                         "description": [
-             "Stroller/Pushchair"
-            ],
+                     "Stroller/Pushchair"
+                    ],
                                                         "subcode": "0F4"
-           }
-          ],
+                   }
+                  ],
                                                 "pieces": 0
-         }
-        ]
-       }
-      ],
+                 }
+                ]
+               }
+              ],
                                 "baseFareTotal": "USD208.37",
                                 "saleFareTotal": "USD208.37",
                                 "saleTaxTotal": "USD36.73",
@@ -647,7 +647,7 @@ angular.module('skedaddle')
                                         "code": "US",
                                         "country": "US",
                                         "salePrice": "USD15.63"
-       },
+               },
                                     {
                                         "kind": "qpxexpress#taxInfo",
                                         "id": "AY_001",
@@ -655,7 +655,7 @@ angular.module('skedaddle')
                                         "code": "AY",
                                         "country": "US",
                                         "salePrice": "USD5.60"
-       },
+               },
                                     {
                                         "kind": "qpxexpress#taxInfo",
                                         "id": "XF",
@@ -663,7 +663,7 @@ angular.module('skedaddle')
                                         "code": "XF",
                                         "country": "US",
                                         "salePrice": "USD7.50"
-       },
+               },
                                     {
                                         "kind": "qpxexpress#taxInfo",
                                         "id": "ZP",
@@ -671,14 +671,14 @@ angular.module('skedaddle')
                                         "code": "ZP",
                                         "country": "US",
                                         "salePrice": "USD8.00"
-       }
-      ],
+               }
+              ],
                                 "fareCalculation": "ORL US X/CLT US ATL Q ORLATL18.60 189.77GA00XNH1 USD 208.37 END ZP MCO CLT XT 15.63US 8.00ZP 5.60AY 7.50XF MCO4.50 CLT3.00",
                                 "latestTicketingTime": "2015-03-15T23:59-04:00",
                                 "ptc": "ADT"
-     }
-    ]
-   },
+             }
+            ]
+           },
                     {
                         "kind": "qpxexpress#tripOption",
                         "saleTotal": "USD245.10",
@@ -713,10 +713,10 @@ angular.module('skedaddle')
                                                 "onTimePerformance": 84,
                                                 "mileage": 469,
                                                 "secure": true
-         }
-        ],
+                 }
+                ],
                                         "connectionDuration": 49
-       },
+               },
                                     {
                                         "kind": "qpxexpress#segmentInfo",
                                         "duration": 76,
@@ -743,12 +743,12 @@ angular.module('skedaddle')
                                                 "onTimePerformance": 81,
                                                 "mileage": 226,
                                                 "secure": true
-         }
-        ]
-       }
-      ]
-     }
-    ],
+                 }
+                ]
+               }
+              ]
+             }
+            ],
                         "pricing": [
                             {
                                 "kind": "qpxexpress#pricingInfo",
@@ -760,8 +760,8 @@ angular.module('skedaddle')
                                         "origin": "ORL",
                                         "destination": "ATL",
                                         "basisCode": "GA00XNH1"
-       }
-      ],
+               }
+              ],
                                 "segmentPricing": [
                                     {
                                         "kind": "qpxexpress#segmentPricing",
@@ -776,30 +776,30 @@ angular.module('skedaddle')
                                                         "commercialName": "ASSISTIVE DEVICES",
                                                         "count": 0,
                                                         "subcode": "0GM"
-           },
+                   },
                                                     {
                                                         "kind": "qpxexpress#bagDescriptor",
                                                         "commercialName": "INFANT CAR SEAT",
                                                         "count": 0,
                                                         "description": [
-             "Infant Car Seat"
-            ],
+                     "Infant Car Seat"
+                    ],
                                                         "subcode": "0G5"
-           },
+                   },
                                                     {
                                                         "kind": "qpxexpress#bagDescriptor",
                                                         "commercialName": "STROLLER OR PUSHCHAIR",
                                                         "count": 0,
                                                         "description": [
-             "Stroller/Pushchair"
-            ],
+                     "Stroller/Pushchair"
+                    ],
                                                         "subcode": "0F4"
-           }
-          ],
+                   }
+                  ],
                                                 "pieces": 0
-         }
-        ]
-       },
+                 }
+                ]
+               },
                                     {
                                         "kind": "qpxexpress#segmentPricing",
                                         "fareId": "AD595E3sgAQ8qIgPMnEERU8LY0UQAx+blHarKryGs6Jo",
@@ -813,31 +813,31 @@ angular.module('skedaddle')
                                                         "commercialName": "ASSISTIVE DEVICES",
                                                         "count": 0,
                                                         "subcode": "0GM"
-           },
+                   },
                                                     {
                                                         "kind": "qpxexpress#bagDescriptor",
                                                         "commercialName": "INFANT CAR SEAT",
                                                         "count": 0,
                                                         "description": [
-             "Infant Car Seat"
-            ],
+                     "Infant Car Seat"
+                    ],
                                                         "subcode": "0G5"
-           },
+                   },
                                                     {
                                                         "kind": "qpxexpress#bagDescriptor",
                                                         "commercialName": "STROLLER OR PUSHCHAIR",
                                                         "count": 0,
                                                         "description": [
-             "Stroller/Pushchair"
-            ],
+                     "Stroller/Pushchair"
+                    ],
                                                         "subcode": "0F4"
-           }
-          ],
+                   }
+                  ],
                                                 "pieces": 0
-         }
-        ]
-       }
-      ],
+                 }
+                ]
+               }
+              ],
                                 "baseFareTotal": "USD208.37",
                                 "saleFareTotal": "USD208.37",
                                 "saleTaxTotal": "USD36.73",
@@ -854,7 +854,7 @@ angular.module('skedaddle')
                                         "code": "US",
                                         "country": "US",
                                         "salePrice": "USD15.63"
-       },
+               },
                                     {
                                         "kind": "qpxexpress#taxInfo",
                                         "id": "AY_001",
@@ -862,7 +862,7 @@ angular.module('skedaddle')
                                         "code": "AY",
                                         "country": "US",
                                         "salePrice": "USD5.60"
-       },
+               },
                                     {
                                         "kind": "qpxexpress#taxInfo",
                                         "id": "XF",
@@ -870,7 +870,7 @@ angular.module('skedaddle')
                                         "code": "XF",
                                         "country": "US",
                                         "salePrice": "USD7.50"
-       },
+               },
                                     {
                                         "kind": "qpxexpress#taxInfo",
                                         "id": "ZP",
@@ -878,14 +878,14 @@ angular.module('skedaddle')
                                         "code": "ZP",
                                         "country": "US",
                                         "salePrice": "USD8.00"
-       }
-      ],
+               }
+              ],
                                 "fareCalculation": "ORL US X/CLT US ATL Q ORLATL18.60 189.77GA00XNH1 USD 208.37 END ZP MCO CLT XT 15.63US 8.00ZP 5.60AY 7.50XF MCO4.50 CLT3.00",
                                 "latestTicketingTime": "2015-03-15T23:59-04:00",
                                 "ptc": "ADT"
-     }
-    ]
-   },
+             }
+            ]
+           },
                     {
                         "kind": "qpxexpress#tripOption",
                         "saleTotal": "USD246.60",
@@ -921,10 +921,10 @@ angular.module('skedaddle')
                                                 "onTimePerformance": 65,
                                                 "mileage": 192,
                                                 "secure": true
-         }
-        ],
+                 }
+                ],
                                         "connectionDuration": 45
-       },
+               },
                                     {
                                         "kind": "qpxexpress#segmentInfo",
                                         "duration": 124,
@@ -952,12 +952,12 @@ angular.module('skedaddle')
                                                 "onTimePerformance": 74,
                                                 "mileage": 595,
                                                 "secure": true
-         }
-        ]
-       }
-      ]
-     }
-    ],
+                 }
+                ]
+               }
+              ]
+             }
+            ],
                         "pricing": [
                             {
                                 "kind": "qpxexpress#pricingInfo",
@@ -969,8 +969,8 @@ angular.module('skedaddle')
                                         "origin": "ORL",
                                         "destination": "ATL",
                                         "basisCode": "GA00XNH1"
-       }
-      ],
+               }
+              ],
                                 "segmentPricing": [
                                     {
                                         "kind": "qpxexpress#segmentPricing",
@@ -985,30 +985,30 @@ angular.module('skedaddle')
                                                         "commercialName": "ASSISTIVE DEVICES",
                                                         "count": 0,
                                                         "subcode": "0GM"
-           },
+                   },
                                                     {
                                                         "kind": "qpxexpress#bagDescriptor",
                                                         "commercialName": "INFANT CAR SEAT",
                                                         "count": 0,
                                                         "description": [
-             "Infant Car Seat"
-            ],
+                     "Infant Car Seat"
+                    ],
                                                         "subcode": "0G5"
-           },
+                   },
                                                     {
                                                         "kind": "qpxexpress#bagDescriptor",
                                                         "commercialName": "STROLLER OR PUSHCHAIR",
                                                         "count": 0,
                                                         "description": [
-             "Stroller/Pushchair"
-            ],
+                     "Stroller/Pushchair"
+                    ],
                                                         "subcode": "0F4"
-           }
-          ],
+                   }
+                  ],
                                                 "pieces": 0
-         }
-        ]
-       },
+                 }
+                ]
+               },
                                     {
                                         "kind": "qpxexpress#segmentPricing",
                                         "fareId": "AD595E3sgAQ8qIgPMnEERU8LY0UQAx+blHarKryGs6Jo",
@@ -1022,31 +1022,31 @@ angular.module('skedaddle')
                                                         "commercialName": "ASSISTIVE DEVICES",
                                                         "count": 0,
                                                         "subcode": "0GM"
-           },
+                   },
                                                     {
                                                         "kind": "qpxexpress#bagDescriptor",
                                                         "commercialName": "INFANT CAR SEAT",
                                                         "count": 0,
                                                         "description": [
-             "Infant Car Seat"
-            ],
+                     "Infant Car Seat"
+                    ],
                                                         "subcode": "0G5"
-           },
+                   },
                                                     {
                                                         "kind": "qpxexpress#bagDescriptor",
                                                         "commercialName": "STROLLER OR PUSHCHAIR",
                                                         "count": 0,
                                                         "description": [
-             "Stroller/Pushchair"
-            ],
+                     "Stroller/Pushchair"
+                    ],
                                                         "subcode": "0F4"
-           }
-          ],
+                   }
+                  ],
                                                 "pieces": 0
-         }
-        ]
-       }
-      ],
+                 }
+                ]
+               }
+              ],
                                 "baseFareTotal": "USD208.37",
                                 "saleFareTotal": "USD208.37",
                                 "saleTaxTotal": "USD38.23",
@@ -1063,7 +1063,7 @@ angular.module('skedaddle')
                                         "code": "US",
                                         "country": "US",
                                         "salePrice": "USD15.63"
-       },
+               },
                                     {
                                         "kind": "qpxexpress#taxInfo",
                                         "id": "AY_001",
@@ -1071,7 +1071,7 @@ angular.module('skedaddle')
                                         "code": "AY",
                                         "country": "US",
                                         "salePrice": "USD5.60"
-       },
+               },
                                     {
                                         "kind": "qpxexpress#taxInfo",
                                         "id": "XF",
@@ -1079,7 +1079,7 @@ angular.module('skedaddle')
                                         "code": "XF",
                                         "country": "US",
                                         "salePrice": "USD9.00"
-       },
+               },
                                     {
                                         "kind": "qpxexpress#taxInfo",
                                         "id": "ZP",
@@ -1087,24 +1087,25 @@ angular.module('skedaddle')
                                         "code": "ZP",
                                         "country": "US",
                                         "salePrice": "USD8.00"
-       }
-      ],
+               }
+              ],
                                 "fareCalculation": "ORL US X/MIA US ATL Q ORLATL18.60 189.77GA00XNH1 USD 208.37 END ZP MCO MIA XT 15.63US 8.00ZP 5.60AY 9.00XF MCO4.50 MIA4.50",
                                 "latestTicketingTime": "2015-03-15T23:59-04:00",
                                 "ptc": "ADT"
-     }
-    ]
-   }
-  ]
+             }
+            ]
+           }
+          ]
             }
         };
 
-        flightResult = request.trips.tripOption[0]
+        flightResults = requests.trips.tripOption[0];
+        console.log(flightResults);
 
-        price = flightResult.saleTotal;
+        price = flightResults.saleTotal;
         console.log(price);
 
-        tripItinerary = flightResult.slice[0];
+        tripItinerary = flightResults.slice[0];
 
         flightLength = tripItinerary.duration;
         console.log(flightLength)
@@ -1130,69 +1131,5 @@ angular.module('skedaddle')
 
         origin = PlacesAndTimes.origin;
         console.log(origin);
-
-
-        //     }); //close of jQuery
-
-        //                var API = {
-        //                                'protocol': 'https',
-        //                                'host': 'googleapis.com/qpxExpress',
-        //                                'base': 'v1',
-        //                                'path': 'trips/search',
-        //                                'query': {
-        //                                    "request": {
-        //                                        "slice": [
-        //                                            {
-        //                                                "origin": "MCO",
-        //                                                "destination": "ATL",
-        //                                                "date": "2015-03-16",
-        //                                                "maxStops": 0
-        //                  },
-        //                                            {
-        //                                                "origin": "ATL",
-        //                                                "destination": "MCO",
-        //                                                "date": "2015-03-18"
-        //                  }
-        //                ],
-        //                                        "passengers": {
-        //                                            "adultCount": 1,
-        //                                            "infantInLapCount": 0,
-        //                                            "infantInSeatCount": 0,
-        //                                            "childCount": 0,
-        //                                            "seniorCount": 0
-        //                                        },
-        //                                        "solutions": 10,
-        //                                        "maxPrice": "400",
-        //                                        "refundable": false
-        //                                    }
-        //                                }
-        //                                'api_key': 'AIzaSyCR6G5517GCv0MKX5Z8wjetXS4NchVfDHI'
-        //                            },
-        //                    };
-        //            
-        //                    function urlForAPI() {
-        //            
-        //                        return url.format(_.extend({}, API, {
-        //                            'pathname': API.base + '/' + API.path
-        //                        }));
-        //                    }
-        //                    console.log(urlForAPI);
-
-        //        function transform(data) {
-        //            return _.map(data.results, function (object) {
-        //                return {
-        //                    title: object.title,
-        //                    description: object.description,
-        //                    price: object.price,
-        //                    images: {
-        //                        full: object.MainImage.url_fullxfull,
-        //                        small: object.MainImage.url_170x135
-        //                    }
-        //                }
-        //            })
-        //        }
-
-
-
 
     });

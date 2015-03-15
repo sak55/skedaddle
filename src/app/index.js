@@ -14,7 +14,7 @@ angular.module('skedaddle', ['ngAnimate', 'ngCookies', 'ngSanitize', 'restangula
                 templateUrl: 'app/order/order.html',
                 controller: 'OrderCtrl',
                 controllerAs: 'order'
-            });
+            })
 
         $urlRouterProvider.otherwise('/');
     });
