@@ -82,12 +82,17 @@
                 <th>Return Flight</th>
                 <th>.CLICK it</th>
             </tr>
-            <tr>
-                <td>{{order.origin}} to {{order.destination}}</td>
-                <td>{{order.airlineCode}} {{order.flightNum}}, {{order.departureTime | date : 'M/d/yy h:mm a': EST}} - {{order.arrivalTime | date : 'h:mm a': EST}}, {{order.flightLength}}min.</td>
-                <!--
-                <td>{{airlineCode}} {{flightNum}}, {{departureTime}}-{{arrivalTime}}, {{flightLength}}</td>-->
-                <td>{{order.price | currency }} {{url_toPurchase}}</td>
+            <tr ng-repeat="flight in order.datas">
+                <td>{{flight.slice[0].segment[0].leg[0].destination}}</td>
+                <td>{{flight.slice[0].segment[0].leg[0].origin}} to {{flight.slice[0].segment[0].leg[0].destination}}
+                    <br>{{flight.slice[0].segment[0].flight.carrier}} {{flight.slice[0].segment[0].flight.number}}, {{flight.slice[0].segment[0].duration}}min.
+                    <br>{{flight.slice[0].segment[0].leg[0].departureTime | date : 'M/d/yy h:mm a': EST}} - {{flight.slice[0].segment[0].leg[0].arrivalTime | date : 'h:mm a': EST}}</td>
+
+                <td>{{flight.slice[1].segment[0].leg[0].origin}} to {{flight.slice[1].segment[0].leg[0].destination}},
+                    <br>{{flight.slice[1].segment[0].flight.carrier}} {{flight.slice[1].segment[0].flight.number}}, {{flight.slice[1].segment[0].duration}}min.
+                    <br>{{flight.slice[1].segment[0].leg[0].departureTime | date : 'M/d/yy h:mm a': EST}} - {{flight.slice[1].segment[0].leg[0].arrivalTime | date : 'h:mm a': EST}}</td>
+                <td>${{flight.saleTotal}}
+                    <br>url_toPurchase</td>
 
 
             </tr>
