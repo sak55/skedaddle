@@ -3,14 +3,15 @@
         "slice": [
             {
                 "origin": "MCO",
-                "destination": "ATL",
-                "date": "2015-03-16",
+                "destination": "LAS",
+                "date": "2015-03-17",
                 "maxStops": 0
       },
             {
-                "origin": "ATL",
+                "origin": "MIA",
                 "destination": "MCO",
-                "date": "2015-03-18"
+                "date": "2015-03-19",
+                "maxStops": 0
       }
     ],
         "passengers": {
@@ -20,8 +21,8 @@
             "childCount": 0,
             "seniorCount": 0
         },
-        "solutions": 10,
-        "maxPrice": "400",
+        "solutions": 20,
+        "maxPrice": "USD400.00",
         "refundable": false
     }
 }

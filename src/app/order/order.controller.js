@@ -3,7 +3,6 @@
 angular.module('skedaddle')
     .controller('OrderCtrl', function () {
         console.log("YO I WORK!!");
-        this.datas = flightResults;
 
         //        var data = $.getJSON("../app/flights.json", function (populatedFlights) {
         //                console.log("success");
@@ -28,8 +27,8 @@ angular.module('skedaddle')
 
         var flightResults, price, tripItinerary,
             flightLength, details, airlineCode, flightNum,
-            PlacesAndTimes, arrivalTime, destination, departureTime,
-            destination, origin;
+            placesAndTimes, arrivalTime, destination, departureTime,
+            destination, origin, datas;
         //object
         var requests = {
             "kind": "qpxExpress#tripsSearch",
@@ -1099,37 +1098,40 @@ angular.module('skedaddle')
             }
         };
 
-        flightResults = requests.trips.tripOption[0];
-        console.log(flightResults);
+        flightResults = requests.trips.tripOption;
+        this.datas = flightResults;
+        console.log(flightResults[0].saleTotal);
 
-        price = flightResults.saleTotal;
+        this.price = flightResults[0].saleTotal.slice(3);
         console.log(price);
 
-        tripItinerary = flightResults.slice[0];
+        tripItinerary = flightResults[0].slice[0];
+        this.tripItinerary = flightResults[0].slice[0];
 
-        flightLength = tripItinerary.duration;
+        this.flightLength = tripItinerary.duration;
         console.log(flightLength)
 
         details = tripItinerary.segment[0];
+        this.details = tripItinerary.segment[0];
 
-        airlineCode = details.flight.carrier;
+        this.airlineCode = details.flight.carrier;
         console.log(airlineCode);
 
-        flightNum = details.flight.number;
+        this.flightNum = details.flight.number;
         console.log(flightNum);
 
-        PlacesAndTimes = details.leg[0];
+        placesAndTimes = details.leg[0];
+        this.placesAndTimes = details.leg[0];
 
-        arrivalTime = PlacesAndTimes.arrivalTime;
+        this.arrivalTime = placesAndTimes.arrivalTime;
         console.log(arrivalTime);
 
-        destination = PlacesAndTimes.destination;
+        this.destination = placesAndTimes.destination;
         console.log(destination);
 
-        departureTime = PlacesAndTimes.departureTime;
+        this.departureTime = placesAndTimes.departureTime;
         console.log(departureTime);
 
-        origin = PlacesAndTimes.origin;
+        this.origin = placesAndTimes.origin;
         console.log(origin);
-
     });

@@ -82,12 +82,14 @@
                 <th>Return Flight</th>
                 <th>.CLICK it</th>
             </tr>
-            <tr ng-repeat="data in order.datas">
-                {{data.price}}
-                <td>{{destination}}</td>
-                <td>{{airlineCode}} {{flightNum}}, {{departureTime}}-{{arrivalTime}}, {{flightLength}}</td>
-                <td>{{airlineCode}} {{flightNum}}, {{departureTime}}-{{arrivalTime}}, {{flightLength}}</td>
-                <td>{{data.saleTotal}} {{url_toPurchase}}</td>
+            <tr>
+                <td>{{order.origin}} to {{order.destination}}</td>
+                <td>{{order.airlineCode}} {{order.flightNum}}, {{order.departureTime | date : 'M/d/yy h:mm a': EST}} - {{order.arrivalTime | date : 'h:mm a': EST}}, {{order.flightLength}}min.</td>
+                <!--
+                <td>{{airlineCode}} {{flightNum}}, {{departureTime}}-{{arrivalTime}}, {{flightLength}}</td>-->
+                <td>{{order.price | currency }} {{url_toPurchase}}</td>
+
+
             </tr>
         </table>
 
