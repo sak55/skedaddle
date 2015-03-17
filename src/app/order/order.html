@@ -9,30 +9,30 @@
 <!-- Order View -->
 <div ng-contoller="Orderctrl as order">
     <div class="order-view form-box">
-        <form name='myForm'>
+        <ng-form name='myForm'>
             <div class="icon-label">Destination</div>
             <div class="icon-row">
                 <label class="icon-anchor" ng-repeat="location in order.location_icons">
-                    <input id="theme" type="radio" ng-click="order.selectTheme('{{order.location.loc_icon}}')" ng-value="" ng-model="themeValue.name" />
+                    <input ng-form="myForm" name="theme" id="theme" type="radio" ng-click="order.selectTheme(location.loc_icon)" />
                     <img ng-src="{{location.loc_icon}}">
                 </label>
-                <h1>{{order.getTheme()}}</h1>
-                <h1>{{order.budgetValue.name}}</h1>
-                <h1>{{order.getBudget()}}</h1>
-                <h1>{{order.themeValue.name}}</h1>
 
+                <h1>{{order.getTheme()}}</h1>
+                <!--                <h1>{{order.budgetValue.name}}</h1>-->
+                <h1>{{order.getBudget()}}</h1>
+                <!--<h1>{{order.themeValue.name}}</h1>-->
             </div>
             <div class="icon-label">Max-Budget</div>
             <div class="icon-row">
                 <label class="icon-anchor" ng-repeat="maxBudget in order.budget">
-                    <input id="budget" type="radio" ng-click="order.selectBudget('{{order.maxBudget}}')" ng-value="" ng-model="budgetValue.name" />
+                    <input ng-form="myForm" name="budget" id="budget" type="radio" ng-click="order.selectBudget(maxBudget)" ng-value="maxBudget" />
                     <img src="../../assets/images/blank38.png">
                     <div class="icon-tag">{{maxBudget | currency:'$':0}}</div>
                 </label>
 
             </div>
             <a href="#" class="btn btn-primary btn-lg search-button">Search <img class="icon-search" src="../../assets/images/magnifying-glass32.png"></a>
-        </form>
+        </ng-form>
     </div>
     <!-- Order View -->
 
@@ -41,12 +41,12 @@
     <div class="results-view form-box">
         <div class="icon-row">
             <i class="icon-anchor">
-                <img class="icon active" src="{{order.themeValue.name}}">
+                <img class="icon active" src="{{order.getTheme()}}">
                 <div>{{location.city}}</div>
             </i>
             <i class="icon-anchor">
                <img class="icon active" src="../../assets/images/blank38.png">
-                <div class="icon-tag">${{order.budgetValue.name}}</div>
+                <div class="icon-tag">${{order.getBudget()}}</div>
             </i>
             <a class="icon-anchor" href="#">
                 <img class="icon active" src="../../assets/images/magnifying-glass32.png">
