@@ -25,6 +25,44 @@ body {
     background-color: rgba(232, 235, 236, 0.5);
 }
 
+label > input {
+    /* HIDE RADIO */
+    
+    visibility: hidden;
+    /* Makes input not-clickable */
+    
+    position: absolute;
+    /* Remove input from document flow */
+}
+
+label > input + img {
+    /* IMAGE STYLES */
+    
+    cursor: pointer;
+    border: $icon-border solid 0.5ex;
+    background-color: $icon-background-color;
+    border-radius: 5em;
+    margin: 2em 1ex;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: middle;
+    -webkit-transform: scale(1.5);
+}
+
+label > input:checked + img {
+    /* (RADIO CHECKED) IMAGE STYLES */
+    
+    box-shadow: 0 0 20px #9B396B;
+    background-color: #A0B6DA;
+    transition-duration: .5s;
+}
+
+label > input:checked + img:hover {
+    background-color: #7099D9;
+    box-shadow: 0 0 20px #481530;
+}
+
 .icon-label {
     text-align: center;
     margin: 0 auto;
@@ -77,9 +115,8 @@ body {
 .icon-tag {
     position: absolute;
     display: inline;
-    margin: 1em 0 0 -15vw;
+    margin: 0 0 0 0vw;
     color: white;
-    width: 2em;
     word-wrap: normal;
     font-size: 1.2em;
     line-height: .9em;
@@ -99,7 +136,7 @@ body {
 }
 
 .budget {
-    background-image: url(../../assets/images/blank.png);
+    width: 50%;
 }
 
 a:hover {

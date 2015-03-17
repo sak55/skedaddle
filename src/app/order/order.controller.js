@@ -4,6 +4,93 @@ angular.module('skedaddle')
     .controller('OrderCtrl', function () {
         console.log("YO I WORK!!");
 
+
+        var view = '';
+
+        this.getView = function () {
+            return view;
+        }
+
+        this.setView = function (switchTo) {
+            view = switchTo;
+        }
+
+        this.tab = 1;
+
+        this.selectTab = function (setTab) {
+            self.tab = setTab;
+        }
+
+        this.isSelected = function (nextTab) {
+            return self.tab === nextTab;
+        }
+
+        this.location_icons = [
+            {
+                city: 'Miami',
+                loc_icon: '../../assets/images/island.png',
+                num: '0'
+            },
+            {
+                city: 'Denver',
+                loc_icon: '../../assets/images/mountain13.png',
+                num: '1'
+            },
+            {
+                city: 'Chaleston',
+                loc_icon: '../../assets/images/hearts13.png',
+                num: '2'
+            },
+            {
+                city: 'Orlando',
+                loc_icon: '../../assets/images/theme-park.png',
+                num: '3'
+            },
+            {
+                city: 'New York City',
+                loc_icon: '../../assets/images/bag.png',
+                num: '4'
+            },
+            {
+                city: 'Las Vegas',
+                loc_icon: '../../assets/images/poker4.png',
+                num: '5'
+            }
+        ];
+
+        this.budget = [
+        300, 400, 500, 600, 700, 800
+    ];
+
+        this.themeValue = {
+            name: '../../assets/images/island.png'
+        };
+        this.budgetValue = {
+            name: '300'
+        };
+
+        var theTheme = '../../assets/images/island.png';
+
+        this.getTheme = function () {
+            console.log(theTheme);
+            return theTheme;
+        }
+
+        this.selectTheme = function (selectedTheme) {
+            theTheme = selectedTheme;
+        }
+
+        var theBudget = 400;
+
+        this.getBudget = function () {
+            console.log(theBudget);
+            return theBudget;
+        }
+
+        this.selectBudget = function (selectedBudget) {
+            theBudget = selectedBudget;
+        }
+
         //        var data = $.getJSON("../app/flights.json", function (populatedFlights) {
         //                console.log("success");
         //            })
@@ -29,6 +116,7 @@ angular.module('skedaddle')
             flightLength, details, airlineCode, flightNum,
             placesAndTimes, arrivalTime, destination, departureTime,
             destination, origin, datas;
+
         //object
         var requests = {
             "kind": "qpxExpress#tripsSearch",
@@ -1143,7 +1231,7 @@ angular.module('skedaddle')
    }
   ]
             }
-        }
+        };
 
         flightResults = requests.trips.tripOption;
         this.datas = flightResults;

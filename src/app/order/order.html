@@ -9,55 +9,30 @@
 <!-- Order View -->
 <div ng-contoller="Orderctrl as order">
     <div class="order-view form-box">
-        <div class="icon-label">Destination</div>
-        <div class="icon-row">
-            <a class="icon-anchor" href="#">
-                <img class="budget-icon icon active" src="../../assets/images/island.png">
-            </a>
-            <a class="icon-anchor" href="#">
-                <img class="budget-icon icon" src="../../assets/images/mountain13.png">
-            </a>
-            <a class="icon-anchor" href="#">
-                <img class="budget-icon icon" src="../../assets/images/hearts13.png">
-            </a>
-            <a class="icon-anchor" href="#">
-                <img class="budget-icon icon" src="../../assets/images/theme-park.png">
-            </a>
-            <a class="icon-anchor" href="#">
-                <img class="budget-icon icon" src="../../assets/images/bag.png">
-            </a>
-            <a class="icon-anchor" href="#">
-                <img class="icon" src="../../assets/images/poker4.png">
-            </a>
-        </div>
-        <div class="icon-label">Max-Budget</div>
-        <div class="icon-row">
-            <a class="icon-anchor" href="#">
-                <img class="icon active" src="../../assets/images/blank.png">
-                <div class="icon-tag">$250</div>
-            </a>
-            <a class="icon-anchor" href="#">
-                <img class="icon" src="../../assets/images/blank.png">
-                <div class="icon-tag">$300</div>
-            </a>
-            <a class="icon-anchor" href="#">
-                <img class="icon" src="../../assets/images/blank.png">
-                <div class="icon-tag">$350</div>
-            </a>
-            <a class="icon-anchor" href="#">
-                <img class="icon" src="../../assets/images/blank.png">
-                <div class="icon-tag">$400</div>
-            </a>
-            <a class="icon-anchor" href="#">
-                <img class="icon" src="../../assets/images/blank.png">
-                <div class="icon-tag">$450</div>
-            </a>
-            <a class="icon-anchor" href="#">
-                <img class="icon" src="../../assets/images/blank.png">
-                <div class="icon-tag plus-tag budget">$500 +</div>
-            </a>
-        </div>
-        <a href="#" class="btn btn-primary btn-lg search-button">Search <img class="icon-search" src="../../assets/images/magnifying-glass32.png"></a>
+        <form name='myForm'>
+            <div class="icon-label">Destination</div>
+            <div class="icon-row">
+                <label class="icon-anchor" ng-repeat="location in order.location_icons">
+                    <input id="theme" type="radio" ng-click="order.selectTheme('{{order.location.loc_icon}}')" ng-value="" ng-model="themeValue.name" />
+                    <img ng-src="{{location.loc_icon}}">
+                </label>
+                <h1>{{order.getTheme()}}</h1>
+                <h1>{{order.budgetValue.name}}</h1>
+                <h1>{{order.getBudget()}}</h1>
+                <h1>{{order.themeValue.name}}</h1>
+
+            </div>
+            <div class="icon-label">Max-Budget</div>
+            <div class="icon-row">
+                <label class="icon-anchor" ng-repeat="maxBudget in order.budget">
+                    <input id="budget" type="radio" ng-click="order.selectBudget('{{order.maxBudget}}')" ng-value="" ng-model="budgetValue.name" />
+                    <img src="../../assets/images/blank38.png">
+                    <div class="icon-tag">{{maxBudget | currency:'$':0}}</div>
+                </label>
+
+            </div>
+            <a href="#" class="btn btn-primary btn-lg search-button">Search <img class="icon-search" src="../../assets/images/magnifying-glass32.png"></a>
+        </form>
     </div>
     <!-- Order View -->
 
@@ -65,11 +40,14 @@
     <!-- Results View -->
     <div class="results-view form-box">
         <div class="icon-row">
-            <a class="icon-anchor" href="#"><img class="icon active" src="../../assets/images/mountain13.png">
-            </a>
-            <a class="icon-anchor" href="#"><img class="icon active" src="../../assets/images/blank.png">
-                <div class="icon-tag">$450</div>
-            </a>
+            <i class="icon-anchor">
+                <img class="icon active" src="{{order.themeValue.name}}">
+                <div>{{location.city}}</div>
+            </i>
+            <i class="icon-anchor">
+               <img class="icon active" src="../../assets/images/blank38.png">
+                <div class="icon-tag">${{order.budgetValue.name}}</div>
+            </i>
             <a class="icon-anchor" href="#">
                 <img class="icon active" src="../../assets/images/magnifying-glass32.png">
                 <div class="icon-tag">new </div>
@@ -85,14 +63,17 @@
             <tr ng-repeat="flight in order.datas">
                 <td>{{flight.slice[0].segment[0].leg[0].destination}}</td>
                 <td>{{flight.slice[0].segment[0].leg[0].origin}} to {{flight.slice[0].segment[0].leg[0].destination}}
-                    <br>{{flight.slice[0].segment[0].flight.carrier}} {{flight.slice[0].segment[0].flight.number}}, {{flight.slice[0].segment[0].duration}}min.
-                    <br>{{flight.slice[0].segment[0].leg[0].departureTime | date : 'M/d/yy h:mm a': EST}} - {{flight.slice[0].segment[0].leg[0].arrivalTime | date : 'h:mm a': EST}}</td>
+                    <br>{{flight.slice[0].segment[0].flight.carrier}} {{flight.slice[0].segment[0].flight.number}} {{flight.slice[0].segment[0].duration}}min.
+                    <br>{{flight.slice[0].segment[0].leg[0].departureTime | date : 'M/d/yy h:mm a': EST}} - {{flight.slice[0].segment[0].leg[0].arrivalTime | date : 'h:mm a': EST}}
+                </td>
 
-                <td>{{flight.slice[1].segment[0].leg[0].origin}} to {{flight.slice[1].segment[0].leg[0].destination}},
-                    <br>{{flight.slice[1].segment[0].flight.carrier}} {{flight.slice[1].segment[0].flight.number}}, {{flight.slice[1].segment[0].duration}}min.
-                    <br>{{flight.slice[1].segment[0].leg[0].departureTime | date : 'M/d/yy h:mm a': EST}} - {{flight.slice[1].segment[0].leg[0].arrivalTime | date : 'h:mm a': EST}}</td>
+                <td>{{flight.slice[1].segment[0].leg[0].origin}} to {{flight.slice[1].segment[0].leg[0].destination}}
+                    <br>{{flight.slice[1].segment[0].flight.carrier}} {{flight.slice[1].segment[0].flight.number}} {{flight.slice[1].segment[0].duration}}min.
+                    <br>{{flight.slice[1].segment[0].leg[0].departureTime | date : 'M/d/yy h:mm a': EST}} - {{flight.slice[1].segment[0].leg[0].arrivalTime | date : 'h:mm a': EST}}
+                </td>
                 <td>${{flight.saleTotal}}
-                    <br>url_toPurchase</td>
+                    <br>url_toPurchase
+                </td>
 
 
             </tr>
