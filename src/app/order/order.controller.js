@@ -1,80 +1,62 @@
 'use strict';
 
 angular.module('skedaddle')
-    .config(function (RestangularProvider) {
-        //        RestangularProvider.setDefaultRequestParams(
-        //        );    
-        RestangularProvider.setDefaultHeaders({
-            "Content-Type": "application/json"
-        })
-        RestangularProvider.setBaseUrl('https://www.googleapis.com/qpxExpress/v1/trips/')
-            //        RestangularProvider.setDefaultRequestParams('json', {
-            //            callback: 'JSON_CALLBACK'
-            //        })
-        RestangularProvider.setDefaultRequestParams({
-            key: 'AIzaSyCR6G5517GCv0MKX5Z8wjetXS4NchVfDHI'
-        })
-    })
-
+    //    .config(function (RestangularProvider) {
+    //        //        RestangularProvider.setDefaultRequestParams(
+    //        //        );    
+    //        RestangularProvider.setDefaultHeaders({
+    //            "Content-Type": "application/json"
+    //        })
+    //        RestangularProvider.setBaseUrl('https://www.googleapis.com/qpxExpress/v1/trips/')
+    //            //        RestangularProvider.setDefaultRequestParams('json', {
+    //            //            callback: 'JSON_CALLBACK'
+    //            //        })
+    //        RestangularProvider.setDefaultRequestParams({
+    //            key: 'AIzaSyCR6G5517GCv0MKX5Z8wjetXS4NchVfDHI'
+    //        })
+    //    })
 
 //https://www.googleapis.com/qpxExpress/v1/trips/search\?key\=AIzaSyCR6G5517GCv0MKX5Z8wjetXS4NchVfDHI >! flights.json
 
 .controller('OrderCtrl', function (Restangular) {
     console.log("YO I WORK!!");
 
-    var self = this;
-    Restangular.one('search').post({
-        "request": {
-            "slice": [
-                {
-                    "origin": "MCO",
-                    "destination": "NYC",
-                    "date": "2015-04-20",
-                    "maxStops": 0
-      },
-                {
-                    "origin": "NYC",
-                    "destination": "MCO",
-                    "date": "2015-04-23",
-                    "maxStops": 0
-      }
-    ],
-            "passengers": {
-                "adultCount": 1,
-                "infantInLapCount": 0,
-                "infantInSeatCount": 0,
-                "childCount": 0,
-                "seniorCount": 0
-            },
-            "solutions": 5,
-            "maxPrice": "USD500.00",
-            "refundable": false
-        }
-    }).then(function (data) {
-        console.log(data);
-    });
+    //    var self = this;
+    //    Restangular.one('search').post({
+    //        "request": {
+    //            "slice": [
+    //                {
+    //                    "origin": "MCO",
+    //                    "destination": "NYC",
+    //                    "date": "2015-04-20",
+    //                    "maxStops": 0
+    //      },
+    //                {
+    //                    "origin": "NYC",
+    //                    "destination": "MCO",
+    //                    "date": "2015-04-23",
+    //                    "maxStops": 0
+    //      }
+    //    ],
+    //            "passengers": {
+    //                "adultCount": 1,
+    //                "infantInLapCount": 0,
+    //                "infantInSeatCount": 0,
+    //                "childCount": 0,
+    //                "seniorCount": 0
+    //            },
+    //            "solutions": 5,
+    //            "maxPrice": "USD500.00",
+    //            "refundable": false
+    //        }
+    //    }).then(function (data) {
+    //        console.log(data);
+    //    });
 
 
-    var view = '';
 
-    this.getView = function () {
-        return view;
-    }
 
-    this.setView = function (switchTo) {
-        view = switchTo;
-    }
-
-    this.tab = 1;
-
-    this.selectTab = function (setTab) {
-        self.tab = setTab;
-    }
-
-    this.isSelected = function (nextTab) {
-        return self.tab === nextTab;
-    }
-
+    //button Selection and object
     this.location_icons = [
         {
             city: 'Miami',
@@ -112,13 +94,6 @@ angular.module('skedaddle')
         300, 400, 500, 600, 700, 800
     ];
 
-    this.themeValue = {
-        name: ''
-    };
-    this.budgetValue = {
-        name: '300'
-    };
-
     var theTheme = '../../assets/images/island.png';
 
     this.getTheme = function () {
@@ -138,44 +113,32 @@ angular.module('skedaddle')
     }
 
     this.selectBudget = function (selectedBudget) {
-        theBudget = selectedBudget;
+            theBudget = selectedBudget;
+        }
+        //button Selection and object
+
+
+    //hide searchView on click of Search 
+    this.view = 'search';
+
+    this.getView = function () {
+        console.log(this.view + ' getView');
+        return this.view;
     }
 
-    //        this.list = [];
-    //        this.text = 'hello';
-    //        this.submit = function () {
-    //            if (this.text) {
-    //                this.list.push(this.text);
-    //                this.text = '';
-    //            }
-    //        };
-    //        var data = $.getJSON("../app/flights.json", function (populatedFlights) {
-    //                console.log("success");
-    //            })
-    //            .done(function () {
-    //                console.log("second success");
-    //            })
-    //            .fail(function () {
-    //                console.log("error");
-    //            })
-    //            .always(function () {
-    //                console.log("complete");
-    //            }); //
-    //        // Perform other work here ...
-    //
-    //        // Set another completion function for the request above
-    //        data.complete(function () {
-    //            console.log("second complete");
-    //        });
-    //
+    this.setView = function (selectedView) {
+        this.view = selectedView;
+        console.log(this.view + ' setView');
+    }
 
+    //hide searchView on click of Search 
 
     var flightResults, price, tripItinerary,
         flightLength, details, airlineCode, flightNum,
         placesAndTimes, arrivalTime, destination, departureTime,
         destination, origin, datas;
 
-    //object
+    //object PREPOULATED DATA
     var requests = {
         "kind": "qpxExpress#tripsSearch",
         "trips": {

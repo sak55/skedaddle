@@ -42,12 +42,17 @@ label > input + img {
     border: $icon-border solid 0.5ex;
     background-color: $icon-background-color;
     border-radius: 5em;
-    margin: 2em 1ex;
+    margin: 4ex 2ex 0 2ex;
     position: relative;
     display: inline-block;
     overflow: hidden;
     vertical-align: middle;
-    -webkit-transform: scale(1.5);
+    -webkit-transform: scale(1.4);
+}
+
+label > input + img:hover {
+    background-color: #D4E76F;
+    box-shadow: 0 0 20px #9B396B;
 }
 
 label > input:checked + img {
@@ -65,29 +70,28 @@ label > input:checked + img:hover {
 
 .icon-label {
     text-align: center;
-    margin: 0 auto;
+    margin: 3% auto 0 auto;
     font-size: 2em;
     width: 100%;
     display: block;
 }
 
 .icon-anchor {
-    padding: 2em 1ex;
-    margin: 2ex 0;
+    //    padding: 2em 1ex;
+    //    margin: 2ex 0;
 }
 
 .icon {
-    margin: 1em 0.1ex;
-    border: $icon-border solid 0.25ex;
-    border-radius: 5em;
-    width: 10%;
-    padding: 0.3ex;
+    cursor: pointer;
+    border: $icon-border solid 0.5ex;
     background-color: $icon-background-color;
+    border-radius: 5em;
+    margin: 4ex 2ex 0 2ex;
     position: relative;
     display: inline-block;
     overflow: hidden;
     vertical-align: middle;
-    -webkit-transform: scale(1.5);
+    -webkit-transform: scale(1.4);
 }
 
 .icon:hover {
@@ -115,13 +119,14 @@ label > input:checked + img:hover {
 .icon-tag {
     position: absolute;
     display: inline;
-    margin: 0 0 0 0vw;
+    margin: -3.7ex 0 0 -1.4ex;
     color: white;
     word-wrap: normal;
-    font-size: 1.2em;
+    font-size: 1.6em;
     line-height: .9em;
     text-align: center;
     text-shadow: #041E42 2px 0;
+    -webkit-transform: rotate(29deg);
 }
 
 .plus-tag {
@@ -135,6 +140,21 @@ label > input:checked + img:hover {
     width: 100%;
 }
 
+.bottom-row {
+    margin-bottom: 2em;
+}
+
+.bottom-tag {
+    margin-top: 2.6em;
+    margin-left: -3em;
+}
+
+.search-tag {
+    margin-top: 2em;
+    margin-left: -3.5em;
+    -webkit-transform: rotate(0);
+}
+
 .budget {
     width: 50%;
 }
@@ -146,9 +166,9 @@ a:hover {
 
 .search-button {
     border: solid 0.1em black;
-    padding: 2em 1ex 2em 1ex;
+    padding: 1ex 1ex 1ex 1ex;
     border-radius: 1ex;
-    margin: 10em 2em 2em 2em;
+    margin: 1ex 2em 2em 2em;
     text-align: center;
     display: block;
     background-color: #204B8A;
@@ -199,12 +219,12 @@ td {
     box-shadow: 0 0 20px #481530;
 }
 
-.order-view {
+.show-view {
     //    display: none;
 }
 
-.results-view {
-    //    display: none;
+.hide-view {
+    display: none;
 }
 
 @media screen and (min-width: 767px) {
@@ -222,7 +242,7 @@ td {
         background-size: 120%;
     }
     .form-box {
-        margin: 5% auto;
+        margin: 10% auto;
         border-radius: 5px;
         padding-bottom: 1em;
         padding: 1ex;
