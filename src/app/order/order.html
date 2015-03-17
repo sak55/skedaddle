@@ -6,112 +6,76 @@
         </div>
     </nav>
 </header>
-<!-- Order View -->
-<div class="order-view form-box">
-    <div class="icon-label">Destination</div>
-    <div class="icon-row">
-        <a class="icon-anchor" href="#">
-            <img class="budget-icon icon active" src="../../assets/images/island.png">
-        </a>
-        <a class="icon-anchor" href="#">
-            <img class="budget-icon icon" src="../../assets/images/mountain13.png">
-        </a>
-        <a class="icon-anchor" href="#">
-            <img class="budget-icon icon" src="../../assets/images/hearts13.png">
-        </a>
-        <a class="icon-anchor" href="#">
-            <img class="budget-icon icon" src="../../assets/images/theme-park.png">
-        </a>
-        <a class="icon-anchor" href="#">
-            <img class="budget-icon icon" src="../../assets/images/bag.png">
-        </a>
-        <a class="icon-anchor" href="#">
-            <img class="icon" src="../../assets/images/poker4.png">
-        </a>
+
+<div ng-contoller="Orderctrl as order">
+
+    <!-- Order View -->
+    <div class="order-view form-box" ng-show="order.getView() === 'search'">
+        <ng-form name='myForm'>
+            <div class="icon-label">Destination</div>
+            <div class="icon-row">
+                <label class="icon-anchor" ng-repeat="location in order.location_icons">
+                    <input ng-form="myForm" name="theme" id="theme" type="radio" ng-click="order.selectTheme(location.loc_icon)" />
+                    <img ng-src="{{location.loc_icon}}">
+                </label>
+            </div>
+            <div class="icon-label">Max-Budget</div>
+            <div class="icon-row">
+                <label class="icon-anchor" ng-repeat="maxBudget in order.budget">
+                    <input ng-form="myForm" name="budget" id="budget" type="radio" ng-click="order.selectBudget(maxBudget)" />
+                    <img src="../../assets/images/blank38.png">
+                    <div class="icon-tag">${{maxBudget}}</div>
+                </label>
+
+            </div>
+            <a class="btn btn-primary btn-lg search-button" ng-click="order.setView('results')">Search <img class="icon-search" src="../../assets/images/magnifying-glass32.png" ></a>
+        </ng-form>
     </div>
-    <div class="icon-label">Max-Budget</div>
-    <div class="icon-row">
-        <a class="icon-anchor" href="#">
-            <img class="icon active" src="../../assets/images/blank.png">
-            <div class="icon-tag">$250</div>
-        </a>
-        <a class="icon-anchor" href="#">
-            <img class="icon" src="../../assets/images/blank.png">
-            <div class="icon-tag">$300</div>
-        </a>
-        <a class="icon-anchor" href="#">
-            <img class="icon" src="../../assets/images/blank.png">
-            <div class="icon-tag">$350</div>
-        </a>
-        <a class="icon-anchor" href="#">
-            <img class="icon" src="../../assets/images/blank.png">
-            <div class="icon-tag">$400</div>
-        </a>
-        <a class="icon-anchor" href="#">
-            <img class="icon" src="../../assets/images/blank.png">
-            <div class="icon-tag">$450</div>
-        </a>
-        <a class="icon-anchor" href="#">
-            <img class="icon" src="../../assets/images/blank.png">
-            <div class="icon-tag plus-tag budget">$500 +</div>
-        </a>
+    <!-- Order View -->
+
+
+    <!-- Results View -->
+    <div class="results-view form-box" ng-show="order.getView() === 'results'">
+        <div class="icon-row bottom-row">
+            <i class="icon-anchor">
+                <img class="icon active" src="{{order.getTheme()}}">
+            </i>
+            <i class="icon-anchor">
+               <img class="icon active" src="../../assets/images/blank38.png">
+                <div class="icon-tag bottom-tag">${{order.getBudget()}}</div>
+            </i>
+            <i class="icon-anchor" ng-click="order.setView('search')">
+                <img class="icon active" src="../../assets/images/magnifying-glass32.png">
+                <div class="icon-tag search-tag">new
+                    <br>search</div>
+            </i>
+        </div>
+        <table class="table table-striped">
+            <tr>
+                <th>Desitination</th>
+                <th>Departure Flight</th>
+                <th>Return Flight</th>
+                <th>.CLICK it</th>
+            </tr>
+            <tr ng-repeat="flight in order.datas">
+                <td>{{flight.slice[0].segment[0].leg[0].destination}}</td>
+                <td>{{flight.slice[0].segment[0].leg[0].origin}} to {{flight.slice[0].segment[0].leg[0].destination}}
+                    <br>{{flight.slice[0].segment[0].flight.carrier}} {{flight.slice[0].segment[0].flight.number}} {{flight.slice[0].segment[0].duration}}min.
+                    <br>{{flight.slice[0].segment[0].leg[0].departureTime | date : 'M/d/yy h:mm a': EST}} - {{flight.slice[0].segment[0].leg[0].arrivalTime | date : 'h:mm a': EST}}
+                </td>
+
+                <td>{{flight.slice[1].segment[0].leg[0].origin}} to {{flight.slice[1].segment[0].leg[0].destination}}
+                    <br>{{flight.slice[1].segment[0].flight.carrier}} {{flight.slice[1].segment[0].flight.number}} {{flight.slice[1].segment[0].duration}}min.
+                    <br>{{flight.slice[1].segment[0].leg[0].departureTime | date : 'M/d/yy h:mm a': EST}} - {{flight.slice[1].segment[0].leg[0].arrivalTime | date : 'h:mm a': EST}}
+                </td>
+                <td>${{flight.saleTotal}}
+                    <br>url_toPurchase
+                </td>
+
+
+            </tr>
+        </table>
+
     </div>
-    <a href="#" class="btn btn-primary btn-lg search-button">Search <img class="icon-search" src="../../assets/images/magnifying-glass32.png"></a>
+    <!-- Results View -->
 </div>
-<!-- Order View -->
-
-
-<!-- Results View -->
-<div class="results-view form-box">
-    <div class="icon-row">
-        <a class="icon-anchor" href="#"><img class="icon active" src="../../assets/images/mountain13.png">
-        </a>
-        <a class="icon-anchor" href="#"><img class="icon active" src="../../assets/images/blank.png">
-            <div class="icon-tag">$450</div>
-        </a>
-        <a class="icon-anchor" href="#">
-            <img class="icon active" src="../../assets/images/magnifying-glass32.png">
-            <div class="icon-tag">new </div>
-        </a>
-    </div>
-    <table class="table table-striped">
-        <tr>
-            <th>Desitination</th>
-            <th>Departs</th>
-            <th>Returns</th>
-            <th>.CLICK it</th>
-        </tr>
-        <tr>
-            <td>{{City}}, {{State}}</td>
-            <td>{{d_date}}, {{d_time}}</td>
-            <td>{{r_date}}, {{r_time}}</td>
-            <td>{{ICON LINK}}</td>
-        </tr>
-        <tr>
-            <td>{{City}}, {{State}}</td>
-            <td>{{d_date}}, {{d_time}}</td>
-            <td>{{r_date}}, {{r_time}}</td>
-            <td>{{ICON LINK}}</td>
-        </tr>
-        <tr>
-            <td>{{City}}, {{State}}</td>
-            <td>{{d_date}}, {{d_time}}</td>
-            <td>{{r_date}}, {{r_time}}</td>
-            <td>{{ICON LINK}}</td>
-        </tr>
-        <tr>
-            <td>{{City}}, {{State}}</td>
-            <td>{{d_date}}, {{d_time}}</td>
-            <td>{{r_date}}, {{r_time}}</td>
-            <td>{{ICON LINK}}</td>
-        </tr>
-        <tr>
-            <td>{{City}}, {{State}}</td>
-            <td>{{d_date}}, {{d_time}}</td>
-            <td>{{r_date}}, {{r_time}}</td>
-            <td>{{ICON LINK}}</td>
-        </tr>
-    </table>
-
-</div>
-<!-- Results View -->
