@@ -18,7 +18,7 @@ angular.module('skedaddle')
 
 //https://www.googleapis.com/qpxExpress/v1/trips/search\?key\=AIzaSyCR6G5517GCv0MKX5Z8wjetXS4NchVfDHI >! flights.json
 
-.controller('OrderCtrl', function (Restangular) {
+.controller('OrderCtrl', function (Restangular, geo) {
     console.log("YO I WORK!!");
 
     //    var self = this;
@@ -53,38 +53,55 @@ angular.module('skedaddle')
     //        console.log(data);
     //    });
 
-
+    //    this.myLocation =
+    //        if ("geolocation" in navigator) {
+    //            /* geolocation is available */
+    //        } else {
+    //            /* geolocation IS NOT available */
+    //        }
 
 
     //button Selection and object
     this.location_icons = [
         {
             city: 'Miami',
+            cit_code: 'MIA',
+            airport: 'MIA',
             loc_icon: '../../assets/images/island.png',
             num: '0'
             },
         {
             city: 'Denver',
+            cit_code: 'DEN',
+            airport: 'DEN',
             loc_icon: '../../assets/images/mountain13.png',
             num: '1'
             },
         {
             city: 'Chaleston',
+            cit_code: 'CHS',
+            airport: 'CHS',
             loc_icon: '../../assets/images/hearts13.png',
             num: '2'
             },
         {
             city: 'Orlando',
+            cit_code: 'ORL',
+            airport: 'MCO',
             loc_icon: '../../assets/images/theme-park.png',
             num: '3'
             },
         {
             city: 'New York City',
+            cit_code: '',
+            airport: 'JFK',
             loc_icon: '../../assets/images/bag.png',
             num: '4'
             },
         {
             city: 'Las Vegas',
+            cit_code: '',
+            airport: 'LAS',
             loc_icon: '../../assets/images/poker4.png',
             num: '5'
             }
@@ -105,6 +122,16 @@ angular.module('skedaddle')
         theTheme = selectedTheme;
     }
 
+    var theCity = 'Miami';
+
+    this.getCity = function () {
+        console.log(theCity);
+        return theCity;
+    }
+
+    this.selectCity = function (selectedCity) {
+        theCity = selectedCity;
+    }
     var theBudget = 300;
 
     this.getBudget = function () {

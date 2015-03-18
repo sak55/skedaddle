@@ -1,7 +1,7 @@
 <header>
     <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" ng-click="order.setView('search')">
                 <em class="catch_phrase">when you've just gotta... </em> Skedaddle</a>
         </div>
     </nav>
@@ -15,16 +15,17 @@
             <div class="icon-label">Destination</div>
             <div class="icon-row">
                 <label class="icon-anchor" ng-repeat="location in order.location_icons">
-                    <input ng-form="myForm" name="theme" id="theme" type="radio" ng-click="order.selectTheme(location.loc_icon)" />
+                    <input ng-form="myForm" name="theme" id="theme" type="radio" ng-click="order.selectTheme(location.loc_icon); order.selectCity(location.city)" required/>
                     <img ng-src="{{location.loc_icon}}">
+                    <div class="city-tag tag">{{location.city}}</div>
                 </label>
             </div>
             <div class="icon-label">Max-Budget</div>
             <div class="icon-row">
                 <label class="icon-anchor" ng-repeat="maxBudget in order.budget">
-                    <input ng-form="myForm" name="budget" id="budget" type="radio" ng-click="order.selectBudget(maxBudget)" />
+                    <input ng-form="myForm" name="budget" id="budget" type="radio" ng-click="order.selectBudget(maxBudget)" required/>
                     <img src="../../assets/images/blank38.png">
-                    <div class="icon-tag">${{maxBudget}}</div>
+                    <div class="icon-tag tag">${{maxBudget}}</div>
                 </label>
 
             </div>
@@ -37,25 +38,26 @@
     <!-- Results View -->
     <div class="results-view form-box" ng-show="order.getView() === 'results'">
         <div class="icon-row bottom-row">
-            <i class="icon-anchor">
+            <i>
                 <img class="icon active" src="{{order.getTheme()}}">
+                <div class="bottom_city-tag tag">{{order.getCity()}}</div>
             </i>
-            <i class="icon-anchor">
+            <i>
                <img class="icon active" src="../../assets/images/blank38.png">
-                <div class="icon-tag bottom-tag">${{order.getBudget()}}</div>
+                <div class="icon-tag bottom-tag tag">${{order.getBudget()}}</div>
             </i>
-            <i class="icon-anchor" ng-click="order.setView('search')">
+            <i ng-click="order.setView('search')">
                 <img class="icon active" src="../../assets/images/magnifying-glass32.png">
-                <div class="icon-tag search-tag">new
+                <div class="icon-tag search-tag tag">new
                     <br>search</div>
             </i>
         </div>
         <table class="table table-striped">
             <tr>
-                <th>Desitination</th>
+                <th>My Desitination</th>
                 <th>Departure Flight</th>
                 <th>Return Flight</th>
-                <th>.CLICK it</th>
+                <th>Purchase</th>
             </tr>
             <tr ng-repeat="flight in order.datas">
                 <td>{{flight.slice[0].segment[0].leg[0].destination}}</td>
@@ -78,4 +80,10 @@
 
     </div>
     <!-- Results View -->
+    <!--Buy View -->
+    <div>
+
+    </div>
+    <!--Buy View -->
+
 </div>
