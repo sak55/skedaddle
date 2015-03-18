@@ -25,11 +25,17 @@ body {
 .container-fluid {
     padding: 0;
     .jumbotron {
-        //    display: none;
+        h1 {
+            font-family: 'Fontdiner Swanky', cursive;
+            margin-top: 0;
+        }
         background-color: $box-background-color;
         border-radius: 0 !important;
         width: 100vw;
         height: 67vh;
+        h5 {
+            font-family: 'Kaushan Script', cursive;
+        }
         p {
             margin-bottom: 2em;
         }
@@ -40,9 +46,18 @@ body {
     }
 }
 
+.navbar-brand {
+    font-family: 'Fontdiner Swanky', cursive;
+    font-size: 1.5em;
+    margin: 0 auto;
+    width: 100%;
+    transition-duration: 0.3s;
+}
+
 .catch_phrase {
     color: $header-font-color;
-    font-size: .5em;
+    font-size: 0.75em;
+    font-family: 'Kaushan Script', cursive;
 }
 
 label > input {
@@ -90,10 +105,16 @@ label > input:checked + img:hover {
 
 .icon-label {
     text-align: center;
-    margin: 3% auto 0 auto;
+    margin: 25% auto 0 6em;
     font-size: 2em;
     width: 100%;
     display: block;
+    font-family: 'Droid Serif', serif;
+    //
+    position: absolute;
+    -webkit-transform: rotate(90deg);
+    //    margin-left: 6em;
+    //    margin-top: 25%;
 }
 
 .icon {
@@ -199,7 +220,7 @@ a:hover {
     border: solid 0.1em black;
     padding: 1ex 1ex 1ex 1ex;
     border-radius: 1ex;
-    margin: 1ex 2em 2em 2em;
+    margin: 4ex 2em 2em 2em;
     text-align: center;
     display: block;
     background-color: $search-button-background-color;
@@ -276,7 +297,8 @@ td {
     }
     .form-box {
         margin: 7% auto;
-        border-radius: 5px;        padding-bottom: 1em;
+        border-radius: 5px;
+        padding-bottom: 1em;
         padding: 1ex;
         width: 50%;
         a {
@@ -292,6 +314,11 @@ td {
         overflow: hidden;
         vertical-align: middle;
         -webkit-transform: scale(1.5);
+    }
+    .icon-label {
+        margin: 3% auto 0 auto;
+         position: inherit;
+    -webkit-transform: rotate(0deg);
     }
 }
 
