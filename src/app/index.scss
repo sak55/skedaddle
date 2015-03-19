@@ -285,13 +285,34 @@ td {
 .btn-success {
     margin-top: 0;
 }
-.btn-success:hover {
-    
-}
+
+.btn-success:hover {}
 
 iframe {
     width: 100vw;
     height: 100vh;
+}
+
+.twitter-timeline {
+    display: none;
+    float: right;
+    display: block;
+    position: absolute;
+}
+
+.fa-twitter {
+    background-color: white;
+    color: #63AEEB;
+}
+
+.fa-github {
+    background-color: #F5F5F5;
+    color: black;
+}
+
+.fa-linkedin {
+    color: white;
+    background-color: #3484B8;
 }
 
 @media screen and (min-width: 767px) {
