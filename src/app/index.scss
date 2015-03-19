@@ -54,6 +54,14 @@ body {
     margin: 0 auto;
     width: 100%;
     transition-duration: 0.3s;
+    i {
+        right: 0;
+        img {
+            -webkit-transform: scale(.8);
+            width: 3%;
+            margin-top: 0.5%;
+        }
+    }
 }
 
 .catch_phrase {
@@ -274,11 +282,29 @@ td {
     box-shadow: 0 0 20px $icon-border_checked_hover;
 }
 
+.btn-success {
+    margin-top: 0;
+}
+.btn-success:hover {
+    
+}
+
+iframe {
+    width: 100vw;
+    height: 100vh;
+}
+
 @media screen and (min-width: 767px) {
     background-size: 100%;
     .form-box {
         margin: 15% auto;
         width: 66%;
+    }
+    .frame-box {
+        width: 80vw;
+    }
+    iframe {
+        width: 79vw;
     }
 }
 
@@ -311,8 +337,16 @@ td {
         a {
             margin-top: 4ex;
         }
+        .btn-success {
+            margin-top: 0;
+        }
     }
-    
+    .frame-box {
+        width: 80vw;
+    }
+    iframe {
+        width: 79vw;
+    }
     .icon {
         border: $icon-border solid 0.5ex;
         border-radius: 5em;

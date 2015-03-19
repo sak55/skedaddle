@@ -17,9 +17,7 @@ angular.module('skedaddle')
     //    })
 
 //https://www.googleapis.com/qpxExpress/v1/trips/search\?key\=AIzaSyCR6G5517GCv0MKX5Z8wjetXS4NchVfDHI >! flights.json
-
 .controller('OrderCtrl', function (Restangular, geo) {
-    console.log("YO I WORK!!");
 
     //    var self = this;
     //    Restangular.one('search').post({
@@ -78,7 +76,7 @@ angular.module('skedaddle')
             num: '1'
             },
         {
-            city: 'Chaleston',
+            city: 'Charleston',
             cit_code: 'CHS',
             airport: 'CHS',
             loc_icon: '../../assets/images/hearts13.png',
@@ -114,7 +112,7 @@ angular.module('skedaddle')
     var theTheme = '../../assets/images/island.png';
 
     this.getTheme = function () {
-        console.log(theTheme);
+        //            console.log(theTheme);
         return theTheme;
     }
 
@@ -125,7 +123,7 @@ angular.module('skedaddle')
     var theCity = 'Miami';
 
     this.getCity = function () {
-        console.log(theCity);
+        //            console.log(theCity);
         return theCity;
     }
 
@@ -135,7 +133,7 @@ angular.module('skedaddle')
     var theBudget = 300;
 
     this.getBudget = function () {
-        console.log(theBudget);
+        //            console.log(theBudget);
         return theBudget;
     }
 
@@ -147,18 +145,16 @@ angular.module('skedaddle')
 
     //hide searchView on click of Search 
     this.view = 'search';
-
     this.getView = function () {
-        console.log(this.view + ' getView');
+        //            console.log(this.view + ' getView');
         return this.view;
     }
 
     this.setView = function (selectedView) {
-        this.view = selectedView;
-        console.log(this.view + ' setView');
-    }
-
-    //hide searchView on click of Search 
+            this.view = selectedView;
+            //                console.log(this.view + ' setView');
+        }
+        //hide searchView on click of Search 
 
     var flightResults, price, tripItinerary,
         flightLength, details, airlineCode, flightNum,
@@ -1279,42 +1275,42 @@ angular.module('skedaddle')
    }
   ]
         }
-    };
+    }
 
     flightResults = requests.trips.tripOption;
     this.datas = flightResults;
-    console.log(this.datas);
+    //        console.log(this.datas);
 
     this.price = flightResults[0].saleTotal.slice(3);
-    console.log(this.price);
+    //        console.log(this.price);
 
     tripItinerary = flightResults[0].slice[0];
     this.tripItinerary = flightResults[0].slice[0];
 
     this.flightLength = tripItinerary.duration;
-    console.log(this.flightLength)
+    //        console.log(this.flightLength)
 
     details = tripItinerary.segment[0];
     this.details = tripItinerary.segment[0];
 
     this.airlineCode = details.flight.carrier;
-    console.log(this.airlineCode);
+    //        console.log(this.airlineCode);
 
     this.flightNum = details.flight.number;
-    console.log(this.flightNum);
+    //        console.log(this.flightNum);
 
     placesAndTimes = details.leg[0];
     this.placesAndTimes = details.leg[0];
 
     this.arrivalTime = placesAndTimes.arrivalTime;
-    console.log(this.arrivalTime);
+    //        console.log(this.arrivalTime);
 
     this.destination = placesAndTimes.destination;
-    console.log(this.destination);
+    //        console.log(this.destination);
 
     this.departureTime = placesAndTimes.departureTime;
-    console.log(this.departureTime);
+    //        console.log(this.departureTime);
 
     this.origin = placesAndTimes.origin;
-    console.log(this.origin);
+    //        console.log(this.origin);
 });

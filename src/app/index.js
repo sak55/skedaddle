@@ -15,6 +15,12 @@ angular.module('skedaddle', ['ngAnimate', 'ngCookies', 'ngSanitize', 'restangula
                 controller: 'OrderCtrl',
                 controllerAs: 'order'
             })
+            .state('team', {
+                url: '/team',
+                templateUrl: 'app/team/team.html',
+                controller: 'TeamCtrl',
+                controllerAs: 'team'
+            })
 
         $urlRouterProvider.otherwise('/');
     });
