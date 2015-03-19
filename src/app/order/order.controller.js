@@ -1,62 +1,62 @@
 'use strict';
 
 angular.module('skedaddle')
-    //    .config(function (RestangularProvider) {
-    //        //        RestangularProvider.setDefaultRequestParams(
-    //        //        );    
-    //        RestangularProvider.setDefaultHeaders({
-    //            "Content-Type": "application/json"
-    //        })
-    //        RestangularProvider.setBaseUrl('https://www.googleapis.com/qpxExpress/v1/trips/')
-    //            //        RestangularProvider.setDefaultRequestParams('json', {
-    //            //            callback: 'JSON_CALLBACK'
-    //            //        })
-    //        RestangularProvider.setDefaultRequestParams({
-    //            key: 'AIzaSyCR6G5517GCv0MKX5Z8wjetXS4NchVfDHI'
-    //        })
-    //    })
+    //post(subElement, elementToPost, [queryParams, headers]): Does a POST and creates a subElement. Subelement is mandatory and is the nested resource. Element to post is the object to post to the server
 
-//https://www.googleapis.com/qpxExpress/v1/trips/search\?key\=AIzaSyCR6G5517GCv0MKX5Z8wjetXS4NchVfDHI >! flights.json
-.controller('OrderCtrl', function (Restangular, geo) {
 
-    //    var self = this;
-    //    Restangular.one('search').post({
-    //        "request": {
-    //            "slice": [
-    //                {
-    //                    "origin": "MCO",
-    //                    "destination": "NYC",
-    //                    "date": "2015-04-20",
-    //                    "maxStops": 0
-    //      },
-    //                {
-    //                    "origin": "NYC",
-    //                    "destination": "MCO",
-    //                    "date": "2015-04-23",
-    //                    "maxStops": 0
-    //      }
-    //    ],
-    //            "passengers": {
-    //                "adultCount": 1,
-    //                "infantInLapCount": 0,
-    //                "infantInSeatCount": 0,
-    //                "childCount": 0,
-    //                "seniorCount": 0
-    //            },
-    //            "solutions": 5,
-    //            "maxPrice": "USD500.00",
-    //            "refundable": false
-    //        }
-    //    }).then(function (data) {
-    //        console.log(data);
-    //    });
+//.config(function (RestangularProvider) {
+//
+//    RestangularProvider.setDefaultHeaders({
+//        "Content-Type": "application/json"
+//    })
+//    RestangularProvider.setBaseUrl('https://www.googleapis.com/qpxExpress/v1/')
+//
+//
+//    RestangularProvider.setDefaultRequestParams({
+//        key: 'AIzaSyCR6G5517GCv0MKX5Z8wjetXS4NchVfDHI'
+//    })
+//})
+//
+////https://www.googleapis.com/qpxExpress/v1/trips/search\?key\=AIzaSyCR6G5517GCv0MKX5Z8wjetXS4NchVfDHI >! flights.json
 
-    //    this.myLocation =
-    //        if ("geolocation" in navigator) {
-    //            /* geolocation is available */
-    //        } else {
-    //            /* geolocation IS NOT available */
-    //        }
+.controller('OrderCtrl', function (Restangular, geo) {//    var self = this;
+//    Restangular.one('trips').post('search', {
+//        "request": {
+//            "slice": [
+//                {
+//                    "origin": "MCO",
+//                    "destination": "NYC",
+//                    "date": "2015-04-20",
+//                    "maxStops": 0
+//          },
+//                {
+//                    "origin": "NYC",
+//                    "destination": "MCO",
+//                    "date": "2015-04-23",
+//                    "maxStops": 0
+//          }
+//        ],
+//            "passengers": {
+//                "adultCount": 1,
+//                "infantInLapCount": 0,
+//                "infantInSeatCount": 0,
+//                "childCount": 0,
+//                "seniorCount": 0
+//            },
+//            "solutions": 5,
+//            "maxPrice": "USD500.00",
+//            "refundable": false
+//        }
+//    }).then(function (data) {
+//        console.log(data);
+//    });
+
+    //        this.myLocation =
+    //            if ("geolocation" in navigator) {
+    //                /* geolocation is available */
+    //            } else {
+    //                /* geolocation IS NOT available */
+    //            }
 
 
     //button Selection and object
