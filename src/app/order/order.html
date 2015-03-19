@@ -17,7 +17,7 @@
                 <label class="icon-anchor" ng-repeat="location in order.location_icons">
                     <input ng-form="myForm" name="theme" id="theme" type="radio" ng-click="order.selectTheme(location.loc_icon); order.selectCity(location.city)" required/>
                     <img ng-src="{{location.loc_icon}}">
-                    <div class="city-tag tag">{{location.city}}</div>
+                    <!--<div class="city-tag tag">{{location.city}}</div>-->
                 </label>
             </div>
             <div class="icon-label">Max-Budget</div>
@@ -29,7 +29,9 @@
                 </label>
 
             </div>
-            <a class="btn btn-primary btn-lg search-button" ng-click="order.setView('results')">Search <img class="icon-search" src="../../assets/images/magnifying-glass32.png" ></a>
+            <a class="btn btn-primary btn-lg search-button" ng-click="order.setView('results')">Search
+<!--            <img class="icon-search" src="../../assets/images/magnifying-glass32.png" >-->
+            </a>
         </ng-form>
     </div>
     <!-- Order View -->
@@ -60,6 +62,7 @@
                 <th>Purchase</th>
             </tr>
             <tr ng-repeat="flight in order.datas">
+
                 <td>{{flight.slice[0].segment[0].leg[0].destination}}</td>
                 <td>{{flight.slice[0].segment[0].leg[0].origin}} to {{flight.slice[0].segment[0].leg[0].destination}}
                     <br>{{flight.slice[0].segment[0].flight.carrier}} {{flight.slice[0].segment[0].flight.number}} {{flight.slice[0].segment[0].duration}}min.
@@ -70,20 +73,20 @@
                     <br>{{flight.slice[1].segment[0].flight.carrier}} {{flight.slice[1].segment[0].flight.number}} {{flight.slice[1].segment[0].duration}}min.
                     <br>{{flight.slice[1].segment[0].leg[0].departureTime | date : 'M/d/yy h:mm a': EST}} - {{flight.slice[1].segment[0].leg[0].arrivalTime | date : 'h:mm a': EST}}
                 </td>
-                <td>${{flight.saleTotal}}
-                    <br>url_toPurchase
+                <td>${{flight.saleTotal.slice(3)}}
+
+                    <br><a class="btn btn-success" ng-click="order.setView('purchase')" href="https://www.priceline.com/fly/#/search/{{flight.slice[0].segment[0].leg[0].origin}}-{{flight.slice[0].segment[0].leg[0].destination}}-{{flight.slice[0].segment[0].leg[0].departureTime | date : 'yyyyMMdd'}}/{{flight.slice[1].segment[0].leg[0].origin}}-{{flight.slice[1].segment[0].leg[0].destination}}-{{flight.slice[1].segment[0].leg[0].departureTime | date : 'yyyyMMdd'}}/1?country-code=US&input-arm-key=564A200A574A200A0zah2Hi%3DzEWMPNckq9BDJC2439&search-number-of-stops=0&direction=outbound&page=1" target="purchaseFrame">.click IT Let's GO!</a>
                 </td>
-
-
             </tr>
         </table>
 
     </div>
     <!-- Results View -->
+
     <!--Buy View -->
-    <div class="form-box">
-        <iframe src="http://www.orbitz.com/shop/airsearch?type=air&ar.type=roundTrip&strm=true&ar.rt.leaveSlice.orig.key=Orlando%2C+Florida+-+Orlando+Airport+%28MCO%29&_ar.rt.leaveSlice.originRadius=0&ar.rt.leaveSlice.dest.key=nyc&_ar.rt.leaveSlice.destinationRadius=0&ar.rt.leaveSlice.date=03%2F20%2F15&ar.rt.leaveSlice.time=10a-2p&ar.rt.returnSlice.date=04%2F23%2F15&ar.rt.returnSlice.time=10a-2p&_ar.rt.flexAirSearch=0&ar.rt.numAdult=1&ar.rt.numSenior=0&ar.rt.numChild=0&ar.rt.child%5B0%5D=&ar.rt.child%5B1%5D=&ar.rt.child%5B2%5D=&ar.rt.child%5B3%5D=&ar.rt.child%5B4%5D=&ar.rt.child%5B5%5D=&ar.rt.child%5B6%5D=&ar.rt.child%5B7%5D=&search=Search+Flights&ar.rt.nonStop=true&_ar.rt.nonStop=0&_ar.rt.narrowSel=0&ar.rt.narrow=airlines&ar.rt.carriers%5B0%5D=&ar.rt.carriers%5B1%5D=&ar.rt.carriers%5B2%5D=&ar.rt.cabin=C
-">Your browser doesn't support iFrames. To Purchase your flight continue <a href='#'>HERE</a>
+    <div class="form-box frame-box" ng-show="order.getView() === 'purchase'">
+        <div ng-click="order.setView('purchase')>[x] close</div>
+        <iframe name=" purchaseFrame " src="http://www.discovery.com/tv-shows/shark-week/ " frameborder="0 " allowtransparency="true " scrolling="yes ">Your browser doesn't support iFrames. To Purchase your flight continue <a href='https://www.priceline.com/fly/#/search/{{flight.slice[0].segment[0].leg[0].origin}}-{{flight.slice[0].segment[0].leg[0].destination}}-{{flight.slice[0].segment[0].leg[0].departureTime | date : ' yyyyMMdd '}}/{{flight.slice[1].segment[0].leg[0].origin}}-{{flight.slice[1].segment[0].leg[0].destination}}-{{flight.slice[1].segment[0].leg[0].departureTime | date : 'yyyyMMdd '}}/1?country-code=US&input-arm-key=564A200A574A200A0zah2Hi%3DzEWMPNckq9BDJC2439&search-number-of-stops=0&direction=outbound&page=1'>HERE</a>
         </iframe>
 
     </div>
