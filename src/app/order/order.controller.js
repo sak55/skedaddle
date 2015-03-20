@@ -2,20 +2,19 @@
 
 angular.module('skedaddle')
 
-.config(function (RestangularProvider) {
+//.config(function (RestangularProvider) {
+//
+//    RestangularProvider.setDefaultHeaders({
+//        "Content-Type": "application/json"
+//    })
+//    RestangularProvider.setBaseUrl('https://www.googleapis.com/qpxExpress/v1/')
+//
+//
+//    RestangularProvider.setDefaultRequestParams({
+//        key: 'AIzaSyCR6G5517GCv0MKX5Z8wjetXS4NchVfDHI'
+//    })
+//})
 
-    RestangularProvider.setDefaultHeaders({
-        "Content-Type": "application/json"
-    })
-    RestangularProvider.setBaseUrl('https://www.googleapis.com/qpxExpress/v1/')
-
-
-    RestangularProvider.setDefaultRequestParams({
-        key: 'AIzaSyCR6G5517GCv0MKX5Z8wjetXS4NchVfDHI'
-    })
-})
-
-////https://www.googleapis.com/qpxExpress/v1/trips/search\?key\=AIzaSyCR6G5517GCv0MKX5Z8wjetXS4NchVfDHI >! flights.json
 
 .controller('OrderCtrl', function (Restangular, geo) {
 
@@ -102,13 +101,8 @@ angular.module('skedaddle')
     this.selections.finalReturnDate = submitFinalReturnDay;
 
 
-    ////////////////////////
 
     //button Selection and object
-
-
-
-
     this.getTheme = function () {
         this.selections.finalDestination = theTheme.city_code
         return theTheme;
@@ -128,45 +122,6 @@ angular.module('skedaddle')
             theBudget = selectedBudget;
         }
         //button Selection and object
-
-    //    this.selections = {
-    //            "finalOrigin": submitOriginCity,
-    //            "finalDestination": theTheme.city_code,
-    //            "finalDepartureDate": submitDepartureDate,
-    //            "finalReturnDate": submitReturnDate,
-    //            "finalMaxBudget": maxBudget
-    //    }
-
-
-
-    //    this.myRequest = {
-    //        "request": {
-    //            "slice": [
-    //                {
-    //                    "origin": "MCO",
-    //                    "destination": "DEN",
-    //                    "date": "2015-03-20",
-    //                    "maxStops": 0
-    //      },
-    //                {
-    //                    "origin": "DEN",
-    //                    "destination": "MCO",
-    //                    "date": "2015-03-22",
-    //                    "maxStops": 0
-    //      }
-    //    ],
-    //            "passengers": {
-    //                "adultCount": 1,
-    //                "infantInLapCount": 0,
-    //                "infantInSeatCount": 0,
-    //                "childCount": 0,
-    //                "seniorCount": 0
-    //            },
-    //            "solutions": 5,
-    //            "maxPrice": "USD500.00",
-    //            "refundable": false
-    //        }
-    //    };
 
 
     this.apiCall = function (mySelections) {
@@ -204,21 +159,21 @@ angular.module('skedaddle')
         }
         console.log(this.findSkedaddle);
 
-        Restangular.one('trips').post('search', this.findSkedaddle)
-            .then(function (data) {
-                console.log(data);
-
-                self.trips = data.trips;
-
-                if (self.trips.tripOption === undefined) {
-                    console.log("NO DATA RETURNED");
-                    return alert("Please try another search there are no flights avalible");
-                } else {
-                    console.log(self.trips);
-                    return self.trips
-                };
-            });
-
+//                Restangular.one('trips').post('search', this.findSkedaddle)
+//              .then(function (data) {
+//                  console.log(data);
+//
+//                  self.trips = data.trips;
+//
+//                  if (self.trips.tripOption === undefined) {
+//                      console.log("NO DATA RETURNED");
+//                      return alert("Please try another search there are no flights avalible");
+//                  } else {
+//                      console.log(self.trips);
+//                      return self.trips
+//                  };
+//              });
+        
         console.log(this.findSkedaddle);
 
     }
