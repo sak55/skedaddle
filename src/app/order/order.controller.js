@@ -1,20 +1,19 @@
 'use strict';
 
 angular.module('skedaddle')
-    //post(subElement, elementToPost, [queryParams, headers]): Does a POST and creates a subElement. Subelement is mandatory and is the nested resource. Element to post is the object to post to the server
 
-//.config(function (RestangularProvider) {
-//
-//    RestangularProvider.setDefaultHeaders({
-//        "Content-Type": "application/json"
-//    })
-//    RestangularProvider.setBaseUrl('https://www.googleapis.com/qpxExpress/v1/')
-//
-//
-//    RestangularProvider.setDefaultRequestParams({
-//        key: 'AIzaSyCR6G5517GCv0MKX5Z8wjetXS4NchVfDHI'
-//    })
-//})
+.config(function (RestangularProvider) {
+
+    RestangularProvider.setDefaultHeaders({
+        "Content-Type": "application/json"
+    })
+    RestangularProvider.setBaseUrl('https://www.googleapis.com/qpxExpress/v1/')
+
+
+    RestangularProvider.setDefaultRequestParams({
+        key: 'AIzaSyCR6G5517GCv0MKX5Z8wjetXS4NchVfDHI'
+    })
+})
 
 ////https://www.googleapis.com/qpxExpress/v1/trips/search\?key\=AIzaSyCR6G5517GCv0MKX5Z8wjetXS4NchVfDHI >! flights.json
 
@@ -67,6 +66,8 @@ angular.module('skedaddle')
             num: '5'
             }
         ];
+    this.trips = {};
+    this.tripOption = this.trips.tripOption;
 
     this.budget = [
         "300", "400", "500", "600", "700", "800"
@@ -169,11 +170,10 @@ angular.module('skedaddle')
 
 
     this.apiCall = function (mySelections) {
-        //        console.log('RING RING API ARE YOU THERE?' + ' city:' + theTheme.city_code + ' the max-budget: ' + theBudget);
-        //        console.log(theTheme.city_code);
+
         console.log(mySelections);
 
-        var findSkedaddle = {
+        this.findSkedaddle = {
             "request": {
                 "slice": [
                     {
@@ -202,26 +202,23 @@ angular.module('skedaddle')
             }
 
         }
-        console.log(findSkedaddle);
+        console.log(this.findSkedaddle);
 
+        Restangular.one('trips').post('search', this.findSkedaddle)
+            .then(function (data) {
+                console.log(data);
 
-        //        Restangular.one('trips').post('search', findSkedaddle)
-        //            .then(function (data) {
-        //
-        //                var APIrequests = data;
-        //                console.log(data);
-        //                var flightResults = data.trips.tripOption;
-        //                self.datas = flightResults;
-        //
-        //                if (self.datas === undefined) {
-        //                    console.log("NO DATA RETURNED")
-        //                } else {
-        //                    console.log(APIrequests);
-        //                    console.log(flightResults);
-        //                };
-        //            });
+                self.trips = data.trips;
 
-        //        console.log(myRequest);    
+                if (self.trips.tripOption === undefined) {
+                    return console.log("NO DATA RETURNED")
+                } else {
+                    console.log(self.trips);
+                    return self.trips
+                };
+            });
+
+        console.log(this.findSkedaddle);
     }
 
 
@@ -255,7 +252,7 @@ angular.module('skedaddle')
     var flightResults, price, tripItinerary,
         flightLength, details, airlineCode, flightNum,
         placesAndTimes, arrivalTime, destination, departureTime,
-        destination, origin, datas;
+        destination, origin;
 
     //object PREPOULATED DATA
 

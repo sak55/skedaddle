@@ -122,7 +122,7 @@
                 <th>Return Flight</th>
                 <th>Purchase</th>
             </tr>
-            <tr ng-repeat="flight in order.datas">
+            <tr ng-repeat="flight in order.trips.tripOption">
 
                 <td>{{flight.slice[0].segment[0].leg[0].destination}}</td>
                 <td>{{flight.slice[0].segment[0].leg[0].origin}} to {{flight.slice[0].segment[0].leg[0].destination}}
