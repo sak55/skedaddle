@@ -1,10 +1,15 @@
 $header-font-color: #9D9D9D;
 $background-color: #A0B6DB;
 $green-border-color: #4C5B0A;
-$icon-background-color: #DFEAA6;
-$icon-background-color_hover: #D4E76F;
-$icon-background-color_checked: #A0B6DA;
-$icon-background-color_checked_hover: #7099D9;
+$icon-background-color: rgba(232,
+235,
+236,
+0.75);
+//#DFEAA6;
+$icon-background-color_hover: white;
+//    #D4E76F;
+$icon-background-color_checked: #7099D9;
+$icon-background-color_checked_hover: #A0B6DA;
 $icon-border: #491530;
 $icon-border_hover: #9B396B;
 $icon-border_checked_hover: #481530;
@@ -230,7 +235,7 @@ a:hover {
     border: solid 0.1em black;
     padding: 1ex 1ex 1ex 1ex;
     border-radius: 1ex;
-    margin: 4ex 2em 2em 2em;
+    margin: 6ex 2em 2em 2em;
     text-align: center;
     display: block;
     background-color: $search-button-background-color;
@@ -246,10 +251,10 @@ a:hover {
 }
 
 .form-box {
-    margin: 12% auto 10% auto;
-    padding: 1ex 0;
-    width: 100%;
-    height: 60%;
+    margin: 0% auto 0% auto;
+    padding: 5em 0 0 0;
+    width: 100vw;
+    height: 100vh;
     background-color: $box-background-color;
 }
 
@@ -272,14 +277,26 @@ td {
     border-bottom: black solid 2px;
 }
 
-.nav-footer {
-    margin: 0 auto;
-    display: block;
-    text-align: center;
+footer {
+    display: none;
 }
 
-.nav-footer a img:hover {
-    box-shadow: 0 0 20px $icon-border_checked_hover;
+.navbar-toggle {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+}
+
+.navbar li a img {
+    width: (5%);
+}
+
+.nav-footer {
+    margin: 0 auto;
+    text-align: center;
+    a img:hover {
+        box-shadow: 0 0 20px $icon-border_checked_hover;
+    }
 }
 
 .btn-success {
@@ -315,6 +332,10 @@ iframe {
     background-color: #3484B8;
 }
 
+#burger-bar ul li a {
+    margin: 2ex auto;
+}
+
 @media screen and (min-width: 767px) {
     background-size: 100%;
     .form-box {
@@ -326,6 +347,18 @@ iframe {
     }
     iframe {
         width: 79vw;
+    }
+    footer {
+        display: block;
+    }
+    .navbar-toggle {
+        display: none;
+    }
+    .navbar-collapse.collapse {
+        display: none !important;
+    }
+    .navbar > .container-fluid .navbar-brand {
+        margin-left: 0px;
     }
 }
 
@@ -355,6 +388,7 @@ iframe {
         padding-bottom: 1em;
         padding: 1ex;
         width: 50%;
+        height: 60vh;
         a {
             margin-top: 4ex;
         }
@@ -367,6 +401,9 @@ iframe {
     }
     iframe {
         width: 79vw;
+    }
+    closeIframe {
+        cursor: pointer;
     }
     .icon {
         border: $icon-border solid 0.5ex;

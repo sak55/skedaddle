@@ -1,11 +1,71 @@
 <header>
-    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
-        <div class="navbar-header">
-            <a class="navbar-brand" ng-click="order.setView('search')">
-                <em class="catch_phrase">when you've just gotta... </em> Skedaddle</a>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#burger-bar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" ng-click="order.setView('search')">
+                    <em class="catch_phrase">when you've just gotta... </em> Skedaddle</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="burger-bar">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#/order" ng-click="order.setView('search')">Search
+                            <img src="../../assets/images/magnifying-glass32.png">
+                        </a>
+
+                    </li>
+
+                    <li>
+                        <a href='http://www.facebook.com/justgottaskedaddle'>facebook
+                            <img src="../../assets/images/facebook29.png">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/gottaSkedaddle">Twitter
+                            <img src="../../assets/images/twitter1.png">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">instagram
+                            <img src="../../assets/images/instagram12.png">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#/team">theTeam
+                        <img src="../../assets/images/team2.png"></a>
+                    </li>
+                    <li>
+                        <a href="#/main">info
+                            <img src="../../assets/images/information19.png">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:skedaddle.click@gmail.com?Subject=Hello!%20I%20saw%20your%20app%20and%20wanted%20to%20contact%20you.&body=Hi%20Sam%20Kauffman,%0A%0ASkedaddle,%20what%20a%20fantastic%20idea%20for%20a%20web%20app!%0AI%20hear%20you%20are%20looking%20for%20front-end%20web%20development%20work.%0ALet's%20schedule%20a%20time%20to%20speak%20at%20your%20earliest%20convience.%0A%0ARegards," target="_top">Contact
+                            <img src="../../assets/images/email123.png">
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 </header>
+
+
+
+
+
+
+
+
+
 
 <div ng-contoller="Orderctrl as order">
 
@@ -15,7 +75,7 @@
             <div class="icon-label">Destination</div>
             <div class="icon-row">
                 <label class="icon-anchor" ng-repeat="location in order.location_icons">
-                    <input ng-form="myForm" name="theme" id="theme" type="radio" ng-click="order.selectTheme(location.loc_icon); order.selectCity(location.city)" required/>
+                    <input ng-form="myForm" name="theme" id="theme" type="radio" ng-click="order.selectTheme(location)" required/>
                     <img ng-src="{{location.loc_icon}}">
                     <!--<div class="city-tag tag">{{location.city}}</div>-->
                 </label>
@@ -29,7 +89,7 @@
                 </label>
 
             </div>
-            <a class="btn btn-primary btn-lg search-button" ng-click="order.setView('results')">Search
+            <a id="apiClick" class="btn btn-primary btn-lg search-button" ng-click="order.setView('results'); order.apiCall(order.selections)">Search
 <!--            <img class="icon-search" src="../../assets/images/magnifying-glass32.png" >-->
             </a>
         </ng-form>
@@ -41,8 +101,8 @@
     <div class="results-view form-box" ng-show="order.getView() === 'results'">
         <div class="icon-row bottom-row">
             <i>
-                <img class="icon active" src="{{order.getTheme()}}">
-                <div class="bottom_city-tag tag">{{order.getCity()}}</div>
+                <img class="icon active" src="{{order.getTheme().loc_icon}}">
+<!--                <div class="bottom_city-tag tag">{{order.getCity().city}}</div>-->
             </i>
             <i>
                <img class="icon active" src="../../assets/images/blank38.png">
@@ -54,6 +114,7 @@
                     <br>search</div>
             </i>
         </div>
+
         <table class="table table-striped">
             <tr>
                 <th>My Desitination</th>
@@ -61,7 +122,7 @@
                 <th>Return Flight</th>
                 <th>Purchase</th>
             </tr>
-            <tr ng-repeat="flight in order.datas">
+            <tr ng-repeat="flight in order.trips.tripOption">
 
                 <td>{{flight.slice[0].segment[0].leg[0].destination}}</td>
                 <td>{{flight.slice[0].segment[0].leg[0].origin}} to {{flight.slice[0].segment[0].leg[0].destination}}
@@ -75,7 +136,7 @@
                 </td>
                 <td>${{flight.saleTotal.slice(3)}}
 
-                    <br><a class="btn btn-success" ng-click="order.setView('purchase')" href="https://www.priceline.com/fly/#/search/{{flight.slice[0].segment[0].leg[0].origin}}-{{flight.slice[0].segment[0].leg[0].destination}}-{{flight.slice[0].segment[0].leg[0].departureTime | date : 'yyyyMMdd'}}/{{flight.slice[1].segment[0].leg[0].origin}}-{{flight.slice[1].segment[0].leg[0].destination}}-{{flight.slice[1].segment[0].leg[0].departureTime | date : 'yyyyMMdd'}}/1?country-code=US&input-arm-key=564A200A574A200A0zah2Hi%3DzEWMPNckq9BDJC2439&search-number-of-stops=0&direction=outbound&page=1" target="purchaseFrame">.click IT Let's GO!</a>
+                    <br><a class="btn btn-success" ng-click="order.setView('purchase')" href="https://www.priceline.com/fly/#/search/{{flight.slice[0].segment[0].leg[0].origin}}-{{flight.slice[0].segment[0].leg[0].destination}}-{{flight.slice[0].segment[0].leg[0].departureTime | date : 'yyyyMMdd'}}/{{flight.slice[1].segment[0].leg[0].origin}}-{{flight.slice[1].segment[0].leg[0].destination}}-{{flight.slice[1].segment[0].leg[0].departureTime | date : 'yyyyMMdd'}}/1?country-code=US&input-arm-key=564A200A574A200A0zah2Hi%3DzEWMPNckq9BDJC2439&search-number-of-stops=0&direction=outbound&page=1" target="purchaseFrame">Skedaddle!</a>
                 </td>
             </tr>
         </table>
@@ -85,8 +146,9 @@
 
     <!--Buy View -->
     <div class="form-box frame-box" ng-show="order.getView() === 'purchase'">
-        <div ng-click="order.setView('purchase')>[x] close</div>
-        <iframe name=" purchaseFrame " src="http://www.discovery.com/tv-shows/shark-week/ " frameborder="0 " allowtransparency="true " scrolling="yes ">Your browser doesn't support iFrames. To Purchase your flight continue <a href='https://www.priceline.com/fly/#/search/{{flight.slice[0].segment[0].leg[0].origin}}-{{flight.slice[0].segment[0].leg[0].destination}}-{{flight.slice[0].segment[0].leg[0].departureTime | date : ' yyyyMMdd '}}/{{flight.slice[1].segment[0].leg[0].origin}}-{{flight.slice[1].segment[0].leg[0].destination}}-{{flight.slice[1].segment[0].leg[0].departureTime | date : 'yyyyMMdd '}}/1?country-code=US&input-arm-key=564A200A574A200A0zah2Hi%3DzEWMPNckq9BDJC2439&search-number-of-stops=0&direction=outbound&page=1'>HERE</a>
+        <a class="closeIframe" ng-click="order.setView('purchase')">[x] close</a>
+        <iframe name=" purchaseFrame " src="" frameborder="0 " allowtransparency="true " scrolling="yes ">Your browser doesn't support iFrames. To Purchase your flight continue
+            <a href="https://www.priceline.com/fly/#/search/{{flight.slice[0].segment[0].leg[0].origin}}-{{flight.slice[0].segment[0].leg[0].destination}}-{{flight.slice[0].segment[0].leg[0].departureTime | date : 'yyyyMMdd'}}/{{flight.slice[1].segment[0].leg[0].origin}}-{{flight.slice[1].segment[0].leg[0].destination}}-{{flight.slice[1].segment[0].leg[0].departureTime | date : 'yyyyMMdd'}}/1?country-code=US&input-arm-key=564A200A574A200A0zah2Hi%3DzEWMPNckq9BDJC2439&search-number-of-stops=0&direction=outbound&page=1">HERE</a>
         </iframe>
 
     </div>
