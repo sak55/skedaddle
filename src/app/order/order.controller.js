@@ -204,22 +204,22 @@ angular.module('skedaddle')
         }
         console.log(this.findSkedaddle);
 
-                Restangular.one('trips').post('search', this.findSkedaddle)
-                    .then(function (data) {
-                        console.log(data);
-        
-                        self.trips = data.trips;
-        
-                        if (self.trips.tripOption === undefined) {
-                            return console.log("NO DATA RETURNED")
-                            alert("Please try another search there are no flights avalible");
-                        } else {
-                            console.log(self.trips);
-                            return self.trips
-                        };
-                    });
-        
-                console.log(this.findSkedaddle);
+        Restangular.one('trips').post('search', this.findSkedaddle)
+            .then(function (data) {
+                console.log(data);
+
+                self.trips = data.trips;
+
+                if (self.trips.tripOption === undefined) {
+                    console.log("NO DATA RETURNED");
+                    return alert("Please try another search there are no flights avalible");
+                } else {
+                    console.log(self.trips);
+                    return self.trips
+                };
+            });
+
+        console.log(this.findSkedaddle);
 
     }
 
