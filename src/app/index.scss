@@ -230,7 +230,7 @@ a:hover {
     border: solid 0.1em black;
     padding: 1ex 1ex 1ex 1ex;
     border-radius: 1ex;
-    margin: 4ex 2em 2em 2em;
+    margin: 6ex 2em 2em 2em;
     text-align: center;
     display: block;
     background-color: $search-button-background-color;
@@ -247,7 +247,7 @@ a:hover {
 
 .form-box {
     margin: 0% auto 0% auto;
-    padding: 0ex 0;
+    padding: 5em 0 0 0;
     width: 100vw;
     height: 100vh;
     background-color: $box-background-color;
@@ -280,6 +280,10 @@ footer {
     display: inline-block;
     position: absolute;
     right: 0;
+}
+
+.navbar li a img {
+    width: (5%);
 }
 
 .nav-footer {
@@ -323,6 +327,10 @@ iframe {
     background-color: #3484B8;
 }
 
+#burger-bar ul li a {
+    margin: 2ex auto;
+}
+
 @media screen and (min-width: 767px) {
     background-size: 100%;
     .form-box {
@@ -340,6 +348,12 @@ iframe {
     }
     .navbar-toggle {
         display: none;
+    }
+    .navbar-collapse.collapse {
+        display: none !important;
+    }
+    .navbar > .container-fluid .navbar-brand {
+        margin-left: 0px;
     }
 }
 
@@ -381,6 +395,9 @@ iframe {
     }
     iframe {
         width: 79vw;
+    }
+    closeIframe {
+        cursor: pointer;
     }
     .icon {
         border: $icon-border solid 0.5ex;
