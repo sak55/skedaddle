@@ -320,9 +320,19 @@ iframe {
     color: #63AEEB;
 }
 
+.fa-twitter:hover {
+    background-color: #63AEEB;
+    color: white;
+}
+
 .fa-github {
     background-color: #F5F5F5;
     color: black;
+}
+
+.fa-github:hover {
+    background-color: black;
+    color: #F5F5F5;
 }
 
 .fa-linkedin {
@@ -330,8 +340,62 @@ iframe {
     background-color: #3484B8;
 }
 
+.fa-linkedin:hover {
+    color: #3484B8;
+    background-color: white;
+}
+
 #burger-bar ul li a {
     margin: 2ex auto;
+}
+
+.teampage {
+    height: 75vh;
+    padding: 1em;
+    h1 {
+        position: relative;
+        text-align: center;
+        display: block;
+        margin: 0 auto;
+        font-family: 'Fontdiner Swanky', cursive;
+        em {
+            font-family: 'Droid Serif', serif;
+        }
+    }
+    div {
+        div {
+            font-size: 3ex;
+            padding: 0.5ex;
+            color: black;
+        }
+    }
+    ul {
+        font-size: 1em;
+    }
+}
+
+.employee-box {
+    margin: 0 auto;
+    margin-bottom: 1em;
+    width: 30%;
+    text-align: center;
+    .social-icon {
+        .fa {
+            display: block;
+        }
+    }
+    div {
+        text-align: center;
+    }
+}
+
+.email {
+    padding: 1ex .1ex;
+    color: white;
+    background-color: black;
+    margin: 1ex;
+    margin-top: 1ex;
+    display: block;
 }
 
 @media screen and (min-width: 767px) {
@@ -339,6 +403,9 @@ iframe {
     .form-box {
         margin: 15% auto;
         width: 66%;
+    }
+    .email {
+        margin-top: 1ex;
     }
     .frame-box {
         width: 80vw;
@@ -390,9 +457,15 @@ iframe {
         a {
             margin-top: 4ex;
         }
+        .email {
+            margin-top: 1ex;
+        }
         .btn-success {
             margin-top: 0;
         }
+    }
+    .teampage {
+        height: 75vh;
     }
     .frame-box {
         width: 80vw;
