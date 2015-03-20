@@ -1,10 +1,15 @@
 $header-font-color: #9D9D9D;
 $background-color: #A0B6DB;
 $green-border-color: #4C5B0A;
-$icon-background-color: #DFEAA6;
-$icon-background-color_hover: #D4E76F;
-$icon-background-color_checked: #A0B6DA;
-$icon-background-color_checked_hover: #7099D9;
+$icon-background-color: rgba(232,
+235,
+236,
+0.75);
+//#DFEAA6;
+$icon-background-color_hover: white;
+//    #D4E76F;
+$icon-background-color_checked: #7099D9;
+$icon-background-color_checked_hover: #A0B6DA;
 $icon-border: #491530;
 $icon-border_hover: #9B396B;
 $icon-border_checked_hover: #481530;
@@ -383,7 +388,7 @@ iframe {
         padding-bottom: 1em;
         padding: 1ex;
         width: 50%;
-        height: 50vh;
+        height: 60vh;
         a {
             margin-top: 4ex;
         }
