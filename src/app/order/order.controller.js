@@ -1332,6 +1332,19 @@ angular.module('skedaddle')
     this.airlineCompany = self.trips.data.carrier;
     console.log(this.airlineCompany);
 
+    
+    
+
+//    $(".airlineName").each(function (index) {
+             //        this.airlineCompany.name = this.airlineCompany.name.replace(/Corporation/i, '');
+             //        console.log(index + ": " + $(this).text());
+             //    });
+//
+//    var re = /Corporation/gi;
+//    var str = 'Apples are round, and apples are juicy.';
+//    this.newstr = str.replace(re, '');
+//    console.log(newstr); // oranges are round, and oranges are juicy.
+
     //    console.log(this.tripOption[0]);
 
 
