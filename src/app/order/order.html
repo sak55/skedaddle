@@ -114,19 +114,28 @@
             </tr>
             <tr ng-repeat="flight in order.trips.tripOption">
 
-                <td>{{flight.slice[0].segment[0].leg[0].destination}} </td>
+                <td>
+                    <span ng-repeat="airport in order.airport">
+                       <span ng-if="airport.code == flight.slice[0].segment[0].leg[0].destination" >
+                           <span ng-repeat="city in order.city">
+                               <span ng-if="city.code == airport.city">
+                                   {{city.name}}
+                               </span>
+
+                    </span>
+                    </span>
+                    </span>
+                </td>
+
+
+
+
                 <td>{{flight.slice[0].segment[0].leg[0].origin}} to {{flight.slice[0].segment[0].leg[0].destination}}
                     <br>
                     <span ng-repeat="airline in order.airlineCompany">
                         <span ng-if="airline.code === flight.slice[0].segment[0].flight.carrier">{{airline.name.replace('Corporation', '-').replace(', Inc.', ' -')}}
                         </span>
                     </span>
-
-
-
-
-
-
                     {{flight.slice[0].segment[0].flight.number}}, {{flight.slice[0].segment[0].duration}}min.
                     <br>{{flight.slice[0].segment[0].leg[0].departureTime | date : 'M/d/yy, h:mm a': EST}} - {{flight.slice[0].segment[0].leg[0].arrivalTime | date : 'h:mm a': EST}}
                 </td>
