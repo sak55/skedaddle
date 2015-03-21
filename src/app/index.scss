@@ -210,13 +210,13 @@ label > input:checked + img:hover {
 }
 
 .bottom-tag {
-    margin-top: -3.5ex;
-    margin-left: 7.6em;
+    margin-top: -6ex;
+    margin-left: 15.3em;
 }
 
 .search-tag {
-    margin-top: 2em;
-    margin-left: -3.5em;
+    margin-top: -4em;
+    margin-left: 19.5em;
     -webkit-transform: rotate(0);
 }
 
@@ -295,6 +295,10 @@ footer {
     a img:hover {
         box-shadow: 0 0 20px $icon-border_checked_hover;
     }
+}
+
+.purchase {
+    text-align: center;
 }
 
 .btn-success {
@@ -397,6 +401,7 @@ iframe {
     margin-top: 1ex;
     display: block;
 }
+
 .email:hover {
     color: black;
     background-color: white;
@@ -468,6 +473,9 @@ iframe {
             margin-top: 0;
         }
     }
+    .form-box .results-view {
+        height: 75 vh;
+    }
     .teampage {
         margin-top: 2em;
         height: 80vh;
@@ -496,6 +504,7 @@ iframe {
         position: inherit;
         -webkit-transform: rotate(0deg);
     }
+    
 }
 
 // injector
