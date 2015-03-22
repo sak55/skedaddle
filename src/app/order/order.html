@@ -1,5 +1,4 @@
 <header>
-
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -20,7 +19,6 @@
                         <a href="#/order" ng-click="order.setView('search')">Search
                             <img src="../../assets/images/magnifying-glass32.png">
                         </a>
-
                     </li>
 
                     <li>
@@ -49,14 +47,6 @@
 </header>
 
 
-
-
-
-
-
-
-
-
 <div ng-contoller="Orderctrl as order">
 
     <!-- Search View -->
@@ -70,12 +60,22 @@
                     <!--<div class="city-tag tag">{{location.city}}</div>-->
                 </label>
             </div>
+
             <div class="icon-label">Max-Budget</div>
             <div class="icon-row">
-                <label class="icon-anchor" ng-repeat="maxBudget in order.budget">
+
+                <!--                hides when romantic is picked-->
+                <label ng-if="order.selections.finalDestination != 'CHS'" class="icon-anchor" ng-repeat="maxBudget in order.singleBudget">
                     <input ng-form="myForm" name="budget" id="budget" type="radio" ng-click="order.selectBudget(maxBudget)" required/>
                     <img src="../../assets/images/blank38.png">
                     <div class="icon-tag tag">${{maxBudget}}</div>
+                </label>
+
+                <!--                shows when romatic is picked-->
+                <label ng-if="order.selections.finalDestination == 'CHS' " class="icon-anchor" ng-repeat="maxBudget in order.romanticBudget">
+                    <input ng-form="myForm" name="budget" id="budget" type="radio" ng-click="order.selectBudget(maxBudget)" required/>
+                    <img src="../../assets/images/blank38.png">
+                    <div class="icon-tag tag romantic-tag">${{maxBudget}}</div>
                 </label>
 
             </div>
@@ -92,11 +92,11 @@
         <div class="icon-row bottom-row">
             <i>
                 <img class="icon active" src="{{order.getTheme().loc_icon}}">
-<!--                <div class="bottom_city-tag tag">{{order.getCity().city}}</div>-->
+<!--                <div class="bottom_city-tag tag">{{order.getTheme().city}}</div>-->
             </i>
             <i>
                <img class="icon active" src="../../assets/images/blank38.png">
-                <div class="icon-tag bottom-tag tag">${{order.getBudget()}}</div>
+                <div class="icon-tag bottom-tag tag" ng-class="{true: 'romantic-tag-bottom'}[order.getTheme().city_code === 'CHS']">${{order.getBudget()}}</div>
             </i>
             <i ng-click="order.setView('search')">
                 <img class="icon active" src="../../assets/images/magnifying-glass32.png">
@@ -104,7 +104,6 @@
                     <br>search</div>
             </i>
         </div>
-
         <table class="table table-striped">
             <tr>
                 <th>My Desitination</th>

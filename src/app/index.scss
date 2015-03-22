@@ -188,6 +188,11 @@ label > input:checked + img:hover {
     -webkit-transform: rotate(29deg);
 }
 
+.romantic-tag {
+    margin: -4ex 0 0 3.2ex;
+    font-size: 1.4em;
+}
+
 .city-tag {
     margin: -3.7ex 0 0 -5ex;
     font-size: 1.2em;
@@ -392,6 +397,24 @@ iframe {
     ul {
         font-size: 1em;
     }
+    a {
+        color: black;
+    }
+    a:hover {
+        color: $header-font-color;
+    }
+    .email {
+        padding: 1ex .1ex;
+        color: white;
+        background-color: black;
+        margin: 1ex;
+        margin-top: 1ex;
+        display: block;
+    }
+    .email:hover {
+        color: black;
+        background-color: white;
+    }
 }
 
 .employee-box {
@@ -409,29 +432,22 @@ iframe {
     }
 }
 
-.email {
-    padding: 1ex .1ex;
-    color: white;
-    background-color: black;
-    margin: 1ex;
-    margin-top: 1ex;
-    display: block;
-}
-
-.email:hover {
-    color: black;
-    background-color: white;
-}
-
 .thankyou {
     margin: 0 5%;
 }
+
 .thankyou a {
     color: black;
 }
 
 .thankyou a:hover {
     color: white;
+}
+
+.romantic-tag-bottom {
+    margin-top: -10.7ex;
+    margin-left: 7.5em;
+    font-size: 2.8ex;
 }
 
 @media screen and (min-width: 767px) {
@@ -552,6 +568,11 @@ iframe {
         margin: 3% auto 0 auto;
         position: inherit;
         -webkit-transform: rotate(0deg);
+    }
+    .romantic-tag-bottom {
+        margin-top: -6.7ex;
+        margin-left: 16.5em;
+        font-size: 2.8ex;
     }
 }
 
