@@ -2,19 +2,18 @@
 
 angular.module('skedaddle')
 
-//.config(function (RestangularProvider) {
-//
-//    RestangularProvider.setDefaultHeaders({
-//        "Content-Type": "application/json"
-//    })
-//    RestangularProvider.setBaseUrl('https://www.googleapis.com/qpxExpress/v1/')
-//
-//
-//    RestangularProvider.setDefaultRequestParams({
-//        key: 'AIzaSyCR6G5517GCv0MKX5Z8wjetXS4NchVfDHI'
-//    })
-//})
+.config(function (RestangularProvider) {
 
+    RestangularProvider.setDefaultHeaders({
+        "Content-Type": "application/json"
+    })
+    RestangularProvider.setBaseUrl('https://www.googleapis.com/qpxExpress/v1/')
+
+
+    RestangularProvider.setDefaultRequestParams({
+        key: 'AIzaSyCR6G5517GCv0MKX5Z8wjetXS4NchVfDHI'
+    })
+})
 
 .controller('OrderCtrl', function (Restangular, geo) {
 
@@ -67,6 +66,10 @@ angular.module('skedaddle')
         ];
     this.trips = {};
     this.tripOption = this.trips.tripOption;
+
+
+
+
 
     this.budget = [
         "300", "400", "500", "600", "700", "800"
@@ -159,21 +162,21 @@ angular.module('skedaddle')
         }
         console.log(this.findSkedaddle);
 
-//                Restangular.one('trips').post('search', this.findSkedaddle)
-//              .then(function (data) {
-//                  console.log(data);
-//
-//                  self.trips = data.trips;
-//
-//                  if (self.trips.tripOption === undefined) {
-//                      console.log("NO DATA RETURNED");
-//                      return alert("Please try another search there are no flights avalible");
-//                  } else {
-//                      console.log(self.trips);
-//                      return self.trips
-//                  };
-//              });
-        
+        Restangular.one('trips').post('search', this.findSkedaddle)
+            .then(function (data) {
+                console.log(data);
+
+                self.trips = data.trips;
+
+                if (self.trips.tripOption === undefined) {
+                    console.log("NO DATA RETURNED");
+                    return alert("Please try another search there are no flights avalible");
+                } else {
+                    console.log(self.trips);
+                    return self.trips
+                };
+            });
+
         console.log(this.findSkedaddle);
 
     }
@@ -206,14 +209,20 @@ angular.module('skedaddle')
         }
         //hide searchView on click of Search 
 
-    var flightResults, price, tripItinerary,
-        flightLength, details, airlineCode, flightNum,
-        placesAndTimes, arrivalTime, destination, departureTime,
-        destination, origin;
+    //makes burger-bar menu close when clicked on    
+    $(function () {
+        var navMain = $("#burger-bar");
+
+        navMain.on("click", "a", null, function () {
+            navMain.collapse('hide');
+        });
+    });
+
+
 
     //object PREPOULATED DATA
 
-    //    var requests = {
+    //    var data = {
     //        "kind": "qpxExpress#tripsSearch",
     //        "trips": {
     //            "kind": "qpxexpress#tripOptions",
@@ -226,78 +235,78 @@ angular.module('skedaddle')
     //                        "code": "JFK",
     //                        "city": "NYC",
     //                        "name": "New York John F Kennedy International"
-    //        },
+    //                },
     //                    {
     //                        "kind": "qpxexpress#airportData",
     //                        "code": "LGA",
     //                        "city": "NYC",
     //                        "name": "New York La Guardia"
-    //        },
+    //                },
     //                    {
     //                        "kind": "qpxexpress#airportData",
     //                        "code": "MCO",
     //                        "city": "ORL",
     //                        "name": "Orlando International"
-    //        }
-    //       ],
+    //                }
+    //               ],
     //                "city": [
     //                    {
     //                        "kind": "qpxexpress#cityData",
     //                        "code": "NYC",
     //                        "name": "New York"
-    //        },
+    //                },
     //                    {
     //                        "kind": "qpxexpress#cityData",
     //                        "code": "ORL",
     //                        "name": "Orlando"
-    //        }
-    //       ],
+    //                }
+    //               ],
     //                "aircraft": [
     //                    {
     //                        "kind": "qpxexpress#aircraftData",
     //                        "code": "320",
     //                        "name": "Airbus A320"
-    //        },
+    //                },
     //                    {
     //                        "kind": "qpxexpress#aircraftData",
     //                        "code": "738",
     //                        "name": "Boeing 737"
-    //        }
-    //       ],
+    //                }
+    //               ],
     //                "tax": [
     //                    {
     //                        "kind": "qpxexpress#taxData",
     //                        "id": "ZP",
     //                        "name": "US Flight Segment Tax"
-    //        },
+    //                },
     //                    {
     //                        "kind": "qpxexpress#taxData",
     //                        "id": "XF",
     //                        "name": "US Passenger Facility Charge"
-    //        },
+    //                },
     //                    {
     //                        "kind": "qpxexpress#taxData",
     //                        "id": "US_001",
     //                        "name": "US Transportation Tax"
-    //        },
+    //                },
     //                    {
     //                        "kind": "qpxexpress#taxData",
     //                        "id": "AY_001",
     //                        "name": "US September 11th Security Fee"
-    //        }
-    //       ],
+    //                }
+    //               ],
     //                "carrier": [
     //                    {
     //                        "kind": "qpxexpress#carrierData",
     //                        "code": "B6",
     //                        "name": "Jetblue Airways Corporation"
-    //        },
+    //                },
     //                    {
     //                        "kind": "qpxexpress#carrierData",
     //                        "code": "US",
     //                        "name": "US Airways, Inc."
-    //        }
-    //       ]
+    //                }
+    //               ]
     //            },
     //            "tripOption": [
     //                {
@@ -337,11 +346,11 @@ angular.module('skedaddle')
     //                                            "mileage": 944,
     //                                            "meal": "Food for Purchase",
     //                                            "secure": true
-    //             }
-    //            ]
-    //           }
-    //          ]
-    //         },
+    //                     }
+    //                    ]
+    //                   }
+    //                  ]
+    //                 },
     //                        {
     //                            "kind": "qpxexpress#sliceInfo",
     //                            "duration": 168,
@@ -373,12 +382,12 @@ angular.module('skedaddle')
     //                                            "mileage": 944,
     //                                            "meal": "Food for Purchase",
     //                                            "secure": true
-    //             }
-    //            ]
-    //           }
-    //          ]
-    //         }
-    //        ],
+    //                     }
+    //                    ]
+    //                   }
+    //                  ]
+    //                 }
+    //                ],
     //                    "pricing": [
     //                        {
     //                            "kind": "qpxexpress#pricingInfo",
@@ -390,7 +399,7 @@ angular.module('skedaddle')
     //                                    "origin": "ORL",
     //                                    "destination": "NYC",
     //                                    "basisCode": "SA14ZNJ3"
-    //           },
+    //                   },
     //                                {
     //                                    "kind": "qpxexpress#fareInfo",
     //                                    "id": "Am4n6laic8oa7p6ypeJILgxC1rionHyecsVqDVC6LzXM",
@@ -398,8 +407,8 @@ angular.module('skedaddle')
     //                                    "origin": "NYC",
     //                                    "destination": "ORL",
     //                                    "basisCode": "QA21ISH3"
-    //           }
-    //          ],
+    //                   }
+    //                  ],
     //                            "segmentPricing": [
     //                                {
     //                                    "kind": "qpxexpress#segmentPricing",
@@ -414,30 +423,30 @@ angular.module('skedaddle')
     //                                                    "commercialName": "ASSISTIVE DEVICES",
     //                                                    "count": 0,
     //                                                    "subcode": "0GM"
-    //               },
+    //                       },
     //                                                {
     //                                                    "kind": "qpxexpress#bagDescriptor",
     //                                                    "commercialName": "INFANT CAR SEAT",
     //                                                    "count": 0,
     //                                                    "description": [
-    //                 "Infant Car Seat"
-    //                ],
+    //                         "Infant Car Seat"
+    //                        ],
     //                                                    "subcode": "0G5"
-    //               },
+    //                       },
     //                                                {
     //                                                    "kind": "qpxexpress#bagDescriptor",
     //                                                    "commercialName": "STROLLER OR PUSHCHAIR",
     //                                                    "count": 0,
     //                                                    "description": [
-    //                 "Stroller/Pushchair"
-    //                ],
+    //                         "Stroller/Pushchair"
+    //                        ],
     //                                                    "subcode": "0F4"
-    //               }
-    //              ],
+    //                       }
+    //                      ],
     //                                            "pieces": 0
-    //             }
-    //            ]
-    //           },
+    //                     }
+    //                    ]
+    //                   },
     //                                {
     //                                    "kind": "qpxexpress#segmentPricing",
     //                                    "fareId": "A1HT90QVqgb0n4Ot3I/1afHNvBcgpOH55WTIBkEhbVfA",
@@ -451,31 +460,31 @@ angular.module('skedaddle')
     //                                                    "commercialName": "ASSISTIVE DEVICES",
     //                                                    "count": 0,
     //                                                    "subcode": "0GM"
-    //               },
+    //                       },
     //                                                {
     //                                                    "kind": "qpxexpress#bagDescriptor",
     //                                                    "commercialName": "INFANT CAR SEAT",
     //                                                    "count": 0,
     //                                                    "description": [
-    //                 "Infant Car Seat"
-    //                ],
+    //                         "Infant Car Seat"
+    //                        ],
     //                                                    "subcode": "0G5"
-    //               },
+    //                       },
     //                                                {
     //                                                    "kind": "qpxexpress#bagDescriptor",
     //                                                    "commercialName": "STROLLER OR PUSHCHAIR",
     //                                                    "count": 0,
     //                                                    "description": [
-    //                 "Stroller/Pushchair"
-    //                ],
+    //                         "Stroller/Pushchair"
+    //                        ],
     //                                                    "subcode": "0F4"
-    //               }
-    //              ],
+    //                       }
+    //                      ],
     //                                            "pieces": 0
-    //             }
-    //            ]
-    //           }
-    //          ],
+    //                     }
+    //                    ]
+    //                   }
+    //                  ],
     //                            "baseFareTotal": "USD229.77",
     //                            "saleFareTotal": "USD229.77",
     //                            "saleTaxTotal": "USD45.43",
@@ -492,7 +501,7 @@ angular.module('skedaddle')
     //                                    "code": "US",
     //                                    "country": "US",
     //                                    "salePrice": "USD17.23"
-    //           },
+    //                   },
     //                                {
     //                                    "kind": "qpxexpress#taxInfo",
     //                                    "id": "AY_001",
@@ -500,7 +509,7 @@ angular.module('skedaddle')
     //                                    "code": "AY",
     //                                    "country": "US",
     //                                    "salePrice": "USD11.20"
-    //           },
+    //                   },
     //                                {
     //                                    "kind": "qpxexpress#taxInfo",
     //                                    "id": "XF",
@@ -508,7 +517,7 @@ angular.module('skedaddle')
     //                                    "code": "XF",
     //                                    "country": "US",
     //                                    "salePrice": "USD9.00"
-    //           },
+    //                   },
     //                                {
     //                                    "kind": "qpxexpress#taxInfo",
     //                                    "id": "ZP",
@@ -516,14 +525,14 @@ angular.module('skedaddle')
     //                                    "code": "ZP",
     //                                    "country": "US",
     //                                    "salePrice": "USD8.00"
-    //           }
-    //          ],
+    //                   }
+    //                  ],
     //                            "fareCalculation": "ORL US JFK 142.33SA14ZNJ3 US ORL 87.44QA21ISH3 USD 229.77 END ZP MCO JFK XT 17.23US 8.00ZP 11.20AY 9.00XF MCO4.50 JFK4.50",
     //                            "latestTicketingTime": "2015-03-17T23:59-04:00",
     //                            "ptc": "ADT"
-    //         }
-    //        ]
-    //       },
+    //                 }
+    //                ]
+    //               },
     //                {
     //                    "kind": "qpxexpress#tripOption",
     //                    "saleTotal": "USD275.20",
@@ -560,11 +569,11 @@ angular.module('skedaddle')
     //                                            "mileage": 944,
     //                                            "meal": "Food for Purchase",
     //                                            "secure": true
-    //             }
-    //            ]
-    //           }
-    //          ]
-    //         },
+    //                     }
+    //                    ]
+    //                   }
+    //                  ]
+    //                 },
     //                        {
     //                            "kind": "qpxexpress#sliceInfo",
     //                            "duration": 168,
@@ -596,12 +605,12 @@ angular.module('skedaddle')
     //                                            "mileage": 944,
     //                                            "meal": "Food for Purchase",
     //                                            "secure": true
-    //             }
-    //            ]
-    //           }
-    //          ]
-    //         }
-    //        ],
+    //                     }
+    //                    ]
+    //                   }
+    //                  ]
+    //                 }
+    //                ],
     //                    "pricing": [
     //                        {
     //                            "kind": "qpxexpress#pricingInfo",
@@ -613,7 +622,7 @@ angular.module('skedaddle')
     //                                    "origin": "ORL",
     //                                    "destination": "NYC",
     //                                    "basisCode": "SA14ZNJ3"
-    //           },
+    //                   },
     //                                {
     //                                    "kind": "qpxexpress#fareInfo",
     //                                    "id": "Am4n6laic8oa7p6ypeJILgxC1rionHyecsVqDVC6LzXM",
@@ -621,8 +630,8 @@ angular.module('skedaddle')
     //                                    "origin": "NYC",
     //                                    "destination": "ORL",
     //                                    "basisCode": "QA21ISH3"
-    //           }
-    //          ],
+    //                   }
+    //                  ],
     //                            "segmentPricing": [
     //                                {
     //                                    "kind": "qpxexpress#segmentPricing",
@@ -637,30 +646,30 @@ angular.module('skedaddle')
     //                                                    "commercialName": "ASSISTIVE DEVICES",
     //                                                    "count": 0,
     //                                                    "subcode": "0GM"
-    //               },
+    //                       },
     //                                                {
     //                                                    "kind": "qpxexpress#bagDescriptor",
     //                                                    "commercialName": "INFANT CAR SEAT",
     //                                                    "count": 0,
     //                                                    "description": [
-    //                 "Infant Car Seat"
-    //                ],
+    //                         "Infant Car Seat"
+    //                        ],
     //                                                    "subcode": "0G5"
-    //               },
+    //                       },
     //                                                {
     //                                                    "kind": "qpxexpress#bagDescriptor",
     //                                                    "commercialName": "STROLLER OR PUSHCHAIR",
     //                                                    "count": 0,
     //                                                    "description": [
-    //                 "Stroller/Pushchair"
-    //                ],
+    //                         "Stroller/Pushchair"
+    //                        ],
     //                                                    "subcode": "0F4"
-    //               }
-    //              ],
+    //                       }
+    //                      ],
     //                                            "pieces": 0
-    //             }
-    //            ]
-    //           },
+    //                     }
+    //                    ]
+    //                   },
     //                                {
     //                                    "kind": "qpxexpress#segmentPricing",
     //                                    "fareId": "Am4n6laic8oa7p6ypeJILgxC1rionHyecsVqDVC6LzXM",
@@ -674,31 +683,31 @@ angular.module('skedaddle')
     //                                                    "commercialName": "ASSISTIVE DEVICES",
     //                                                    "count": 0,
     //                                                    "subcode": "0GM"
-    //               },
+    //                       },
     //                                                {
     //                                                    "kind": "qpxexpress#bagDescriptor",
     //                                                    "commercialName": "INFANT CAR SEAT",
     //                                                    "count": 0,
     //                                                    "description": [
-    //                 "Infant Car Seat"
-    //                ],
+    //                         "Infant Car Seat"
+    //                        ],
     //                                                    "subcode": "0G5"
-    //               },
+    //                       },
     //                                                {
     //                                                    "kind": "qpxexpress#bagDescriptor",
     //                                                    "commercialName": "STROLLER OR PUSHCHAIR",
     //                                                    "count": 0,
     //                                                    "description": [
-    //                 "Stroller/Pushchair"
-    //                ],
+    //                         "Stroller/Pushchair"
+    //                        ],
     //                                                    "subcode": "0F4"
-    //               }
-    //              ],
+    //                       }
+    //                      ],
     //                                            "pieces": 0
-    //             }
-    //            ]
-    //           }
-    //          ],
+    //                     }
+    //                    ]
+    //                   }
+    //                  ],
     //                            "baseFareTotal": "USD229.77",
     //                            "saleFareTotal": "USD229.77",
     //                            "saleTaxTotal": "USD45.43",
@@ -715,7 +724,7 @@ angular.module('skedaddle')
     //                                    "code": "US",
     //                                    "country": "US",
     //                                    "salePrice": "USD17.23"
-    //           },
+    //                   },
     //                                {
     //                                    "kind": "qpxexpress#taxInfo",
     //                                    "id": "AY_001",
@@ -723,7 +732,7 @@ angular.module('skedaddle')
     //                                    "code": "AY",
     //                                    "country": "US",
     //                                    "salePrice": "USD11.20"
-    //           },
+    //                   },
     //                                {
     //                                    "kind": "qpxexpress#taxInfo",
     //                                    "id": "XF",
@@ -731,7 +740,7 @@ angular.module('skedaddle')
     //                                    "code": "XF",
     //                                    "country": "US",
     //                                    "salePrice": "USD9.00"
-    //           },
+    //                   },
     //                                {
     //                                    "kind": "qpxexpress#taxInfo",
     //                                    "id": "ZP",
@@ -739,14 +748,14 @@ angular.module('skedaddle')
     //                                    "code": "ZP",
     //                                    "country": "US",
     //                                    "salePrice": "USD8.00"
-    //           }
-    //          ],
+    //                   }
+    //                  ],
     //                            "fareCalculation": "ORL US JFK 142.33SA14ZNJ3 US ORL 87.44QA21ISH3 USD 229.77 END ZP MCO JFK XT 17.23US 8.00ZP 11.20AY 9.00XF MCO4.50 JFK4.50",
     //                            "latestTicketingTime": "2015-03-17T23:59-04:00",
     //                            "ptc": "ADT"
-    //         }
-    //        ]
-    //       },
+    //                 }
+    //                ]
+    //               },
     //                {
     //                    "kind": "qpxexpress#tripOption",
     //                    "saleTotal": "USD300.20",
@@ -782,11 +791,11 @@ angular.module('skedaddle')
     //                                            "onTimePerformance": 40,
     //                                            "mileage": 950,
     //                                            "secure": true
-    //             }
-    //            ]
-    //           }
-    //          ]
-    //         },
+    //                     }
+    //                    ]
+    //                   }
+    //                  ]
+    //                 },
     //                        {
     //                            "kind": "qpxexpress#sliceInfo",
     //                            "duration": 166,
@@ -817,12 +826,12 @@ angular.module('skedaddle')
     //                                            "onTimePerformance": 40,
     //                                            "mileage": 950,
     //                                            "secure": true
-    //             }
-    //            ]
-    //           }
-    //          ]
-    //         }
-    //        ],
+    //                     }
+    //                    ]
+    //                   }
+    //                  ]
+    //                 }
+    //                ],
     //                    "pricing": [
     //                        {
     //                            "kind": "qpxexpress#pricingInfo",
@@ -834,7 +843,7 @@ angular.module('skedaddle')
     //                                    "origin": "ORL",
     //                                    "destination": "NYC",
     //                                    "basisCode": "OI21AE2U"
-    //           },
+    //                   },
     //                                {
     //                                    "kind": "qpxexpress#fareInfo",
     //                                    "id": "ALLf4X7JkG5IeNY0nxvyxiZo2uj5y6H5grWhEMv7Lq0w",
@@ -842,8 +851,8 @@ angular.module('skedaddle')
     //                                    "origin": "NYC",
     //                                    "destination": "ORL",
     //                                    "basisCode": "OI21AE2U"
-    //           }
-    //          ],
+    //                   }
+    //                  ],
     //                            "segmentPricing": [
     //                                {
     //                                    "kind": "qpxexpress#segmentPricing",
@@ -858,16 +867,16 @@ angular.module('skedaddle')
     //                                                    "commercialName": "UPTO50LB 23KG AND62LI 158LCM",
     //                                                    "count": 1,
     //                                                    "description": [
-    //                 "Up to 50 lb/23 kg",
-    //                 "Up to 62 li/158 lcm"
-    //                ],
+    //                         "Up to 50 lb/23 kg",
+    //                         "Up to 62 li/158 lcm"
+    //                        ],
     //                                                    "subcode": "0GO"
-    //               }
-    //              ],
+    //                       }
+    //                      ],
     //                                            "pieces": 1
-    //             }
-    //            ]
-    //           },
+    //                     }
+    //                    ]
+    //                   },
     //                                {
     //                                    "kind": "qpxexpress#segmentPricing",
     //                                    "fareId": "ALLf4X7JkG5IeNY0nxvyxiZo2uj5y6H5grWhEMv7Lq0w",
@@ -881,17 +890,17 @@ angular.module('skedaddle')
     //                                                    "commercialName": "UPTO50LB 23KG AND62LI 158LCM",
     //                                                    "count": 1,
     //                                                    "description": [
-    //                 "Up to 50 lb/23 kg",
-    //                 "Up to 62 li/158 lcm"
-    //                ],
+    //                         "Up to 50 lb/23 kg",
+    //                         "Up to 62 li/158 lcm"
+    //                        ],
     //                                                    "subcode": "0GO"
-    //               }
-    //              ],
+    //                       }
+    //                      ],
     //                                            "pieces": 1
-    //             }
-    //            ]
-    //           }
-    //          ],
+    //                     }
+    //                    ]
+    //                   }
+    //                  ],
     //                            "baseFareTotal": "USD253.02",
     //                            "saleFareTotal": "USD253.02",
     //                            "saleTaxTotal": "USD47.18",
@@ -908,7 +917,7 @@ angular.module('skedaddle')
     //                                    "code": "US",
     //                                    "country": "US",
     //                                    "salePrice": "USD18.98"
-    //           },
+    //                   },
     //                                {
     //                                    "kind": "qpxexpress#taxInfo",
     //                                    "id": "AY_001",
@@ -916,7 +925,7 @@ angular.module('skedaddle')
     //                                    "code": "AY",
     //                                    "country": "US",
     //                                    "salePrice": "USD11.20"
-    //           },
+    //                   },
     //                                {
     //                                    "kind": "qpxexpress#taxInfo",
     //                                    "id": "XF",
@@ -924,7 +933,7 @@ angular.module('skedaddle')
     //                                    "code": "XF",
     //                                    "country": "US",
     //                                    "salePrice": "USD9.00"
-    //           },
+    //                   },
     //                                {
     //                                    "kind": "qpxexpress#taxInfo",
     //                                    "id": "ZP",
@@ -932,14 +941,14 @@ angular.module('skedaddle')
     //                                    "code": "ZP",
     //                                    "country": "US",
     //                                    "salePrice": "USD8.00"
-    //           }
-    //          ],
+    //                   }
+    //                  ],
     //                            "fareCalculation": "ORL B6 LGA 126.51OI21AE2U B6 ORL 126.51OI21AE2U USD 253.02 END ZP MCO LGA XT 18.98US 8.00ZP 11.20AY 9.00XF MCO4.50 LGA4.50",
     //                            "latestTicketingTime": "2015-03-17T23:59-04:00",
     //                            "ptc": "ADT"
-    //         }
-    //        ]
-    //       },
+    //                 }
+    //                ]
+    //               },
     //                {
     //                    "kind": "qpxexpress#tripOption",
     //                    "saleTotal": "USD317.20",
@@ -975,11 +984,11 @@ angular.module('skedaddle')
     //                                            "onTimePerformance": 40,
     //                                            "mileage": 944,
     //                                            "secure": true
-    //             }
-    //            ]
-    //           }
-    //          ]
-    //         },
+    //                     }
+    //                    ]
+    //                   }
+    //                  ]
+    //                 },
     //                        {
     //                            "kind": "qpxexpress#sliceInfo",
     //                            "duration": 169,
@@ -1009,12 +1018,12 @@ angular.module('skedaddle')
     //                                            "duration": 169,
     //                                            "mileage": 944,
     //                                            "secure": true
-    //             }
-    //            ]
-    //           }
-    //          ]
-    //         }
-    //        ],
+    //                     }
+    //                    ]
+    //                   }
+    //                  ]
+    //                 }
+    //                ],
     //                    "pricing": [
     //                        {
     //                            "kind": "qpxexpress#pricingInfo",
@@ -1026,7 +1035,7 @@ angular.module('skedaddle')
     //                                    "origin": "ORL",
     //                                    "destination": "NYC",
     //                                    "basisCode": "ZI14AE2M"
-    //           },
+    //                   },
     //                                {
     //                                    "kind": "qpxexpress#fareInfo",
     //                                    "id": "Aatm0kqDuDgwlow5R2NGED5M/CqfwHTcWxX5kpw3MIJk",
@@ -1034,8 +1043,8 @@ angular.module('skedaddle')
     //                                    "origin": "NYC",
     //                                    "destination": "ORL",
     //                                    "basisCode": "OI21AE2U"
-    //           }
-    //          ],
+    //                   }
+    //                  ],
     //                            "segmentPricing": [
     //                                {
     //                                    "kind": "qpxexpress#segmentPricing",
@@ -1050,16 +1059,16 @@ angular.module('skedaddle')
     //                                                    "commercialName": "UPTO50LB 23KG AND62LI 158LCM",
     //                                                    "count": 1,
     //                                                    "description": [
-    //                 "Up to 50 lb/23 kg",
-    //                 "Up to 62 li/158 lcm"
-    //                ],
+    //                         "Up to 50 lb/23 kg",
+    //                         "Up to 62 li/158 lcm"
+    //                        ],
     //                                                    "subcode": "0GO"
-    //               }
-    //              ],
+    //                       }
+    //                      ],
     //                                            "pieces": 1
-    //             }
-    //            ]
-    //           },
+    //                     }
+    //                    ]
+    //                   },
     //                                {
     //                                    "kind": "qpxexpress#segmentPricing",
     //                                    "fareId": "Aatm0kqDuDgwlow5R2NGED5M/CqfwHTcWxX5kpw3MIJk",
@@ -1073,17 +1082,17 @@ angular.module('skedaddle')
     //                                                    "commercialName": "UPTO50LB 23KG AND62LI 158LCM",
     //                                                    "count": 1,
     //                                                    "description": [
-    //                 "Up to 50 lb/23 kg",
-    //                 "Up to 62 li/158 lcm"
-    //                ],
+    //                         "Up to 50 lb/23 kg",
+    //                         "Up to 62 li/158 lcm"
+    //                        ],
     //                                                    "subcode": "0GO"
-    //               }
-    //              ],
+    //                       }
+    //                      ],
     //                                            "pieces": 1
-    //             }
-    //            ]
-    //           }
-    //          ],
+    //                     }
+    //                    ]
+    //                   }
+    //                  ],
     //                            "baseFareTotal": "USD268.84",
     //                            "saleFareTotal": "USD268.84",
     //                            "saleTaxTotal": "USD48.36",
@@ -1100,7 +1109,7 @@ angular.module('skedaddle')
     //                                    "code": "US",
     //                                    "country": "US",
     //                                    "salePrice": "USD20.16"
-    //           },
+    //                   },
     //                                {
     //                                    "kind": "qpxexpress#taxInfo",
     //                                    "id": "AY_001",
@@ -1108,7 +1117,7 @@ angular.module('skedaddle')
     //                                    "code": "AY",
     //                                    "country": "US",
     //                                    "salePrice": "USD11.20"
-    //           },
+    //                   },
     //                                {
     //                                    "kind": "qpxexpress#taxInfo",
     //                                    "id": "XF",
@@ -1116,7 +1125,7 @@ angular.module('skedaddle')
     //                                    "code": "XF",
     //                                    "country": "US",
     //                                    "salePrice": "USD9.00"
-    //           },
+    //                   },
     //                                {
     //                                    "kind": "qpxexpress#taxInfo",
     //                                    "id": "ZP",
@@ -1124,14 +1133,14 @@ angular.module('skedaddle')
     //                                    "code": "ZP",
     //                                    "country": "US",
     //                                    "salePrice": "USD8.00"
-    //           }
-    //          ],
+    //                   }
+    //                  ],
     //                            "fareCalculation": "ORL B6 JFK 142.33ZI14AE2M B6 ORL 126.51OI21AE2U USD 268.84 END ZP MCO JFK XT 20.16US 8.00ZP 11.20AY 9.00XF MCO4.50 JFK4.50",
     //                            "latestTicketingTime": "2015-03-17T23:59-04:00",
     //                            "ptc": "ADT"
-    //         }
-    //        ]
-    //       },
+    //                 }
+    //                ]
+    //               },
     //                {
     //                    "kind": "qpxexpress#tripOption",
     //                    "saleTotal": "USD317.20",
@@ -1167,11 +1176,11 @@ angular.module('skedaddle')
     //                                            "onTimePerformance": 20,
     //                                            "mileage": 944,
     //                                            "secure": true
-    //             }
-    //            ]
-    //           }
-    //          ]
-    //         },
+    //                     }
+    //                    ]
+    //                   }
+    //                  ]
+    //                 },
     //                        {
     //                            "kind": "qpxexpress#sliceInfo",
     //                            "duration": 169,
@@ -1201,12 +1210,12 @@ angular.module('skedaddle')
     //                                            "duration": 169,
     //                                            "mileage": 944,
     //                                            "secure": true
-    //             }
-    //            ]
-    //           }
-    //          ]
-    //         }
-    //        ],
+    //                     }
+    //                    ]
+    //                   }
+    //                  ]
+    //                 }
+    //                ],
     //                    "pricing": [
     //                        {
     //                            "kind": "qpxexpress#pricingInfo",
@@ -1218,7 +1227,7 @@ angular.module('skedaddle')
     //                                    "origin": "ORL",
     //                                    "destination": "NYC",
     //                                    "basisCode": "ZI14AE2M"
-    //           },
+    //                   },
     //                                {
     //                                    "kind": "qpxexpress#fareInfo",
     //                                    "id": "Aatm0kqDuDgwlow5R2NGED5M/CqfwHTcWxX5kpw3MIJk",
@@ -1226,8 +1235,8 @@ angular.module('skedaddle')
     //                                    "origin": "NYC",
     //                                    "destination": "ORL",
     //                                    "basisCode": "OI21AE2U"
-    //           }
-    //          ],
+    //                   }
+    //                  ],
     //                            "segmentPricing": [
     //                                {
     //                                    "kind": "qpxexpress#segmentPricing",
@@ -1242,16 +1251,16 @@ angular.module('skedaddle')
     //                                                    "commercialName": "UPTO50LB 23KG AND62LI 158LCM",
     //                                                    "count": 1,
     //                                                    "description": [
-    //                 "Up to 50 lb/23 kg",
-    //                 "Up to 62 li/158 lcm"
-    //                ],
+    //                         "Up to 50 lb/23 kg",
+    //                         "Up to 62 li/158 lcm"
+    //                        ],
     //                                                    "subcode": "0GO"
-    //               }
-    //              ],
+    //                       }
+    //                      ],
     //                                            "pieces": 1
-    //             }
-    //            ]
-    //           },
+    //                     }
+    //                    ]
+    //                   },
     //                                {
     //                                    "kind": "qpxexpress#segmentPricing",
     //                                    "fareId": "Aatm0kqDuDgwlow5R2NGED5M/CqfwHTcWxX5kpw3MIJk",
@@ -1265,17 +1274,17 @@ angular.module('skedaddle')
     //                                                    "commercialName": "UPTO50LB 23KG AND62LI 158LCM",
     //                                                    "count": 1,
     //                                                    "description": [
-    //                 "Up to 50 lb/23 kg",
-    //                 "Up to 62 li/158 lcm"
-    //                ],
+    //                         "Up to 50 lb/23 kg",
+    //                         "Up to 62 li/158 lcm"
+    //                        ],
     //                                                    "subcode": "0GO"
-    //               }
-    //              ],
+    //                       }
+    //                      ],
     //                                            "pieces": 1
-    //             }
-    //            ]
-    //           }
-    //          ],
+    //                     }
+    //                    ]
+    //                   }
+    //                  ],
     //                            "baseFareTotal": "USD268.84",
     //                            "saleFareTotal": "USD268.84",
     //                            "saleTaxTotal": "USD48.36",
@@ -1292,7 +1301,7 @@ angular.module('skedaddle')
     //                                    "code": "US",
     //                                    "country": "US",
     //                                    "salePrice": "USD20.16"
-    //           },
+    //                   },
     //                                {
     //                                    "kind": "qpxexpress#taxInfo",
     //                                    "id": "AY_001",
@@ -1300,7 +1309,7 @@ angular.module('skedaddle')
     //                                    "code": "AY",
     //                                    "country": "US",
     //                                    "salePrice": "USD11.20"
-    //           },
+    //                   },
     //                                {
     //                                    "kind": "qpxexpress#taxInfo",
     //                                    "id": "XF",
@@ -1308,7 +1317,7 @@ angular.module('skedaddle')
     //                                    "code": "XF",
     //                                    "country": "US",
     //                                    "salePrice": "USD9.00"
-    //           },
+    //                   },
     //                                {
     //                                    "kind": "qpxexpress#taxInfo",
     //                                    "id": "ZP",
@@ -1316,59 +1325,19 @@ angular.module('skedaddle')
     //                                    "code": "ZP",
     //                                    "country": "US",
     //                                    "salePrice": "USD8.00"
-    //           }
-    //          ],
+    //                   }
+    //                  ],
     //                            "fareCalculation": "ORL B6 JFK 142.33ZI14AE2M B6 ORL 126.51OI21AE2U USD 268.84 END ZP MCO JFK XT 20.16US 8.00ZP 11.20AY 9.00XF MCO4.50 JFK4.50",
     //                            "latestTicketingTime": "2015-03-17T23:59-04:00",
     //                            "ptc": "ADT"
-    //         }
-    //        ]
-    //       }
-    //      ]
+    //                 }
+    //                ]
+    //               }
+    //              ]
     //        }
     //    }
     //
-    //    flightResults = requests.trips.tripOption;
-    //    this.datas = flightResults;
-    //    //    //        console.log(this.datas);
-    //    this.price = flightResults[0].saleTotal.slice(3);
-    //    //        console.log(this.price);
-    //
-    //    tripItinerary = flightResults[0].slice[0];
-    //    this.tripItinerary = flightResults[0].slice[0];
-    //
-    //    this.flightLength = tripItinerary.duration;
-    //    //        console.log(this.flightLength)
-    //
-    //    details = tripItinerary.segment[0];
-    //    this.details = tripItinerary.segment[0];
-    //
-    //    this.airlineCode = details.flight.carrier;
-    //    //        console.log(this.airlineCode);
-    //
-    //    this.flightNum = details.flight.number;
-    //    //        console.log(this.flightNum);
-    //
-    //    placesAndTimes = details.leg[0];
-    //    this.placesAndTimes = details.leg[0];
-    //
-    //    this.arrivalTime = placesAndTimes.arrivalTime;
-    //    //        console.log(this.arrivalTime);
-    //
-    //    this.destination = placesAndTimes.destination;
-    //    //        console.log(this.destination);
-    //
-    //    this.departureTime = placesAndTimes.departureTime;
-    //    //        console.log(this.departureTime);
-    //
-    //    this.origin = placesAndTimes.origin;
-    //    //        console.log(this.origin);
+    //    self.trips = data.trips;
 
-    $(function () {
-        var navMain = $("#burger-bar");
 
-        navMain.on("click", "a", null, function () {
-            navMain.collapse('hide');
-        });
-    });
 });
