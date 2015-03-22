@@ -2,18 +2,18 @@
 
 angular.module('skedaddle')
 
-.config(function (RestangularProvider) {
-
-    RestangularProvider.setDefaultHeaders({
-        "Content-Type": "application/json"
-    })
-    RestangularProvider.setBaseUrl('https://www.googleapis.com/qpxExpress/v1/')
-
-
-    RestangularProvider.setDefaultRequestParams({
-        key: 'AIzaSyCR6G5517GCv0MKX5Z8wjetXS4NchVfDHI'
-    })
-})
+//.config(function (RestangularProvider) {
+//
+//    RestangularProvider.setDefaultHeaders({
+//        "Content-Type": "application/json"
+//    })
+//    RestangularProvider.setBaseUrl('https://www.googleapis.com/qpxExpress/v1/')
+//
+//
+//    RestangularProvider.setDefaultRequestParams({
+//        key: 'AIzaSyCR6G5517GCv0MKX5Z8wjetXS4NchVfDHI'
+//    })
+//})
 
 .controller('OrderCtrl', function (Restangular, geo) {
 
@@ -71,15 +71,21 @@ angular.module('skedaddle')
 
 
 
-    this.budget = [
+    this.singleBudget = [
         "300", "400", "500", "600", "700", "800"
     ];
+    this.romanticBudget = ["600", "800", "1000", "1200", "1400", "1600"];
 
     var theTheme = "";
     var theBudget = '';
     var maxBudget;
     this.selections = {}
     this.selections.finalOrigin = 'MCO';
+    this.selections.adultCount = 1;
+
+
+
+
 
 
     var nowMS = Date.now()
@@ -107,7 +113,10 @@ angular.module('skedaddle')
 
     //button Selection and object
     this.getTheme = function () {
-        this.selections.finalDestination = theTheme.city_code
+        this.selections.finalDestination = theTheme.city_code;
+        if (theTheme.city_code == 'CHS') {
+            this.selections.adultCount = 2;
+        }
         return theTheme;
     }
 
@@ -148,7 +157,7 @@ angular.module('skedaddle')
                               }
                             ],
                 "passengers": {
-                    "adultCount": 1,
+                    "adultCount": mySelections.adultCount,
                     "infantInLapCount": 0,
                     "infantInSeatCount": 0,
                     "childCount": 0,
@@ -162,20 +171,20 @@ angular.module('skedaddle')
         }
         console.log(this.findSkedaddle);
 
-        Restangular.one('trips').post('search', this.findSkedaddle)
-            .then(function (data) {
-                console.log(data);
-
-                self.trips = data.trips;
-
-                if (self.trips.tripOption === undefined) {
-                    console.log("NO DATA RETURNED");
-                    return alert("Please try another search there are no flights avalible");
-                } else {
-                    console.log(self.trips);
-                    return self.trips
-                };
-            });
+        //    Restangular.one('trips').post('search', this.findSkedaddle)
+        //        .then(function (data) {
+        //            console.log(data);
+        //
+        //            self.trips = data.trips;
+        //
+        //            if (self.trips.tripOption === undefined) {
+        //                console.log("NO DATA RETURNED");
+        //                return alert("Please try another search there are no flights avalible");
+        //            } else {
+        //                console.log(self.trips);
+        //                return self.trips
+        //            };
+        //        });
 
         console.log(this.findSkedaddle);
 
