@@ -32,17 +32,23 @@ body {
             font-family: 'Fontdiner Swanky', cursive;
             margin-top: 0;
             margin-left: 0em;
+            margin-bottom: 2em;
         }
+        //background-color: transparent;
         background-color: $box-background-color;
         border-radius: 0 !important;
         width: 100vw;
-        height: 67vh;
+        height: 105vh;
         h5 {
             font-family: 'Kaushan Script', cursive;
             margin-left: 0em;
+            margin-top: 2em;
         }
         p {
             margin-bottom: 2em;
+            font-weight: bold;
+            line-height: 1.3;
+            font-size: large;
         }
         a {
             margin: 9em auto 0 auto;
@@ -233,7 +239,7 @@ a:hover {
     border: solid 0.1em black;
     padding: 1ex 1ex 1ex 1ex;
     border-radius: 1ex;
-    margin: 6ex 2em 2em 2em;
+    margin: 4ex 2em 0em 2em;
     text-align: center;
     display: block;
     background-color: $search-button-background-color;
@@ -252,8 +258,18 @@ a:hover {
     margin: 0% auto 0% auto;
     padding: 5em 0 0 0;
     width: 100vw;
+}
+
+.searchHeight {
     height: 100vh;
-    background-color: $box-background-color;
+}
+
+.resultsHeight {
+    height: 100vh;
+}
+
+.buyHeight {
+    height: 100vh;
 }
 
 .results-box {
@@ -409,9 +425,19 @@ iframe {
 
 @media screen and (min-width: 767px) {
     background-size: 100%;
+    .container-fluid .jumbotron {
+        background-color: $box-background-color;
+        h5 {
+            margin-top: 0;
+        }
+        h1 {
+            margin-bottom: 0;
+        }
+    }
     .form-box {
         margin: 15% auto;
         width: 66%;
+        background-color: $box-background-color;
     }
     .email {
         margin-top: 1ex;
@@ -442,6 +468,7 @@ iframe {
     }
     .container-fluid {
         .jumbotron {
+            background-color: $box-background-color;
             border-radius: 0 !important;
             margin-bottom: 0;
             height: 100vh;
@@ -449,20 +476,21 @@ iframe {
             margin-right: 60em;
             a {
                 display: inherit;
-                margin-top: 8.4em;
+                margin-top: 18em;
             }
             p {
                 margin-bottom: 0;
+                line-height: 1.42857;
             }
         }
     }
     .form-box {
         margin: 7% auto;
-        border-radius: 5px;
+        //border-radius: 5px;
         padding-bottom: 1em;
         padding: 1ex;
         width: 50%;
-        height: 60vh;
+        background-color: $box-background-color;
         a {
             margin-top: 4ex;
         }
@@ -473,20 +501,30 @@ iframe {
             margin-top: 0;
         }
     }
-    .form-box .results-view {
-        height: 75 vh;
+    .searchHeight {
+        height: 57vh;
+    }
+    .resultsHeight {
+        height: 80vh;
+        opacity: 0.7;
+    }
+    .buyHeight {
+        height: 75vh;
     }
     .teampage {
         margin-top: 2em;
         height: 80vh;
+//        background-color: black;
+//        opacity: 0.5;
     }
     .frame-box {
         width: 80vw;
     }
     iframe {
         width: 79vw;
+        height: 70vh;
     }
-    closeIframe {
+    .closeIframe {
         cursor: pointer;
     }
     .icon {
