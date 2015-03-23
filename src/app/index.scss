@@ -1,11 +1,7 @@
-// injector
 $header-font-color: #9D9D9D;
 $background-color: #A0B6DB;
 $green-border-color: #4C5B0A;
-$icon-background-color: rgba(232,
-235,
-236,
-0.75);
+$icon-background-color: rgba(232,235,236,0.75);
 $icon-background-color_hover: white;
 $icon-background-color_checked: #7099D9;
 $icon-background-color_checked_hover: #A0B6DA;
@@ -13,10 +9,7 @@ $icon-border: #491530;
 $icon-border_hover: #9B396B;
 $icon-border_checked_hover: #481530;
 $search-button-background-color: #204B8A;
-$box-background-color: rgba(232,
-235,
-236,
-0.5);
+$box-background-color: rgba(232,235,236,0.5);
 body {
     background-image: url(../assets/images/commercial-airplane-taking-off-and-high-resolution_227318.png);
     background-size: 290%;
@@ -35,7 +28,6 @@ body {
             margin-left: 0em;
             margin-bottom: 2em;
         }
-        //background-color: transparent;
         background-color: $box-background-color;
         border-radius: 0 !important;
         width: 100vw;
@@ -81,18 +73,11 @@ body {
 }
 
 label > input {
-    /* HIDE RADIO */
-    
     visibility: hidden;
-    /* Makes input not-clickable */
-    
     position: absolute;
-    /* Remove input from document flow */
 }
 
 label > input + img {
-    /* IMAGE STYLES */
-    
     cursor: pointer;
     border: $icon-border solid 0.3ex;
     background-color: $icon-background-color;
@@ -111,8 +96,6 @@ label > input + img:hover {
 }
 
 label > input:checked + img {
-    /* (RADIO CHECKED) IMAGE STYLES */
-    
     box-shadow: 0 0 20px $icon-border_hover;
     background-color: $icon-background-color_checked;
     transition-duration: .5s;
@@ -602,6 +585,3 @@ iframe {
         font-size: 2.8ex;
     }
 }
-
-
-// endinjector
