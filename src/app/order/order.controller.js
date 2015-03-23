@@ -2,18 +2,18 @@
 
 angular.module('skedaddle')
 
-//.config(function (RestangularProvider) {
-//
-//    RestangularProvider.setDefaultHeaders({
-//        "Content-Type": "application/json"
-//    })
-//    RestangularProvider.setBaseUrl('https://www.googleapis.com/qpxExpress/v1/')
-//
-//
-//    RestangularProvider.setDefaultRequestParams({
-//        key: 'AIzaSyCR6G5517GCv0MKX5Z8wjetXS4NchVfDHI'
-//    })
-//})
+.config(function (RestangularProvider) {
+
+    RestangularProvider.setDefaultHeaders({
+        "Content-Type": "application/json"
+    })
+    RestangularProvider.setBaseUrl('https://www.googleapis.com/qpxExpress/v1/')
+
+
+    RestangularProvider.setDefaultRequestParams({
+        key: 'AIzaSyCR6G5517GCv0MKX5Z8wjetXS4NchVfDHI'
+    })
+})
 
 .controller('OrderCtrl', function (Restangular, geo) {
 
@@ -181,20 +181,20 @@ angular.module('skedaddle')
         }
         console.log(this.findSkedaddle);
 
-        //    Restangular.one('trips').post('search', this.findSkedaddle)
-        //        .then(function (data) {
-        //            console.log(data);
-        //
-        //            self.trips = data.trips;
-        //
-        //            if (self.trips.tripOption === undefined) {
-        //                console.log("NO DATA RETURNED");
-        //                return alert("Please try another search there are no flights avalible");
-        //            } else {
-        //                console.log(self.trips);
-        //                return self.trips
-        //            };
-        //        });
+            Restangular.one('trips').post('search', this.findSkedaddle)
+          .then(function (data) {
+              console.log(data);
+
+              self.trips = data.trips;
+
+              if (self.trips.tripOption === undefined) {
+                  console.log("NO DATA RETURNED");
+                  return alert("Please try another search there are no flights avalible");
+              } else {
+                  console.log(self.trips);
+                  return self.trips
+              };
+          });
 
         console.log(this.findSkedaddle);
 
