@@ -1,0 +1,28 @@
+{
+    "request": {
+        "slice": [
+            {
+                "origin": "MCO",
+                "destination": "NYC",
+                "date": "2015-04-20",
+                "maxStops": 0
+      },
+            {
+                "origin": "NYC",
+                "destination": "MCO",
+                "date": "2015-04-23",
+                "maxStops": 0
+      }
+    ],
+        "passengers": {
+            "adultCount": 1,
+            "infantInLapCount": 0,
+            "infantInSeatCount": 0,
+            "childCount": 0,
+            "seniorCount": 0
+        },
+        "solutions": 5,
+        "maxPrice": "USD500.00",
+        "refundable": false
+    }
+}
