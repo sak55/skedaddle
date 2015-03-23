@@ -37,8 +37,7 @@ body {
         }
         //background-color: transparent;
         background-color: $box-background-color;
-        border-radius: 0;
-        //!important;
+        border-radius: 0 !important;
         width: 100vw;
         height: 105vh;
         h5 {
@@ -493,8 +492,7 @@ iframe {
         display: none;
     }
     .navbar-collapse.collapse {
-        display: none;
-        //!important;
+        display: none !important;
     }
     .navbar > .container-fluid .navbar-brand {
         margin-left: 0px;
@@ -508,8 +506,7 @@ iframe {
     .container-fluid {
         .jumbotron {
             background-color: $box-background-color;
-            border-radius: 0;
-            //!important;
+            border-radius: 0 !important;
             margin-bottom: 0;
             height: 100vh;
             width: 33vw;
