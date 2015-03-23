@@ -37,8 +37,8 @@ body {
         }
         //background-color: transparent;
         background-color: $box-background-color;
-        border-radius: 0; 
-            //!important;
+        border-radius: 0;
+        //!important;
         width: 100vw;
         height: 105vh;
         h5 {
@@ -82,18 +82,11 @@ body {
 }
 
 label > input {
-    /* HIDE RADIO */
-    
     visibility: hidden;
-    /* Makes input not-clickable */
-    
     position: absolute;
-    /* Remove input from document flow */
 }
 
 label > input + img {
-    /* IMAGE STYLES */
-    
     cursor: pointer;
     border: $icon-border solid 0.3ex;
     background-color: $icon-background-color;
@@ -112,8 +105,6 @@ label > input + img:hover {
 }
 
 label > input:checked + img {
-    /* (RADIO CHECKED) IMAGE STYLES */
-    
     box-shadow: 0 0 20px $icon-border_hover;
     background-color: $icon-background-color_checked;
     transition-duration: .5s;
@@ -502,8 +493,8 @@ iframe {
         display: none;
     }
     .navbar-collapse.collapse {
-        display: none; 
-            //!important;
+        display: none;
+        //!important;
     }
     .navbar > .container-fluid .navbar-brand {
         margin-left: 0px;
@@ -517,8 +508,8 @@ iframe {
     .container-fluid {
         .jumbotron {
             background-color: $box-background-color;
-            border-radius: 0; 
-                //!important;
+            border-radius: 0;
+            //!important;
             margin-bottom: 0;
             height: 100vh;
             width: 33vw;
@@ -605,6 +596,5 @@ iframe {
         font-size: 2.8ex;
     }
 }
-
 
 // endinjector
