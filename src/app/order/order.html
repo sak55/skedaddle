@@ -100,7 +100,7 @@
     <!--Buy View -->
     <div class="form-box frame-box buyHeight" ng-show="order.getView() === 'purchase'">
         <a class="closeIframe" ng-click="order.setView('results')">[x] close</a>
-        <iframe name="purchaseFrame" src="http://www.discovery.com/tv-shows/shark-week/" frameborder="0 " allowtransparency="true " scrolling="yes ">Your browser doesn't support iFrames. To Purchase your flight continue
+        <iframe name="purchaseFrame" src="#" frameborder="0 " allowtransparency="true " scrolling="yes ">Your browser doesn't support iFrames. To Purchase your flight continue
             <a href="https://www.priceline.com/fly/#/search/{{flight.slice[0].segment[0].leg[0].origin}}-{{flight.slice[0].segment[0].leg[0].destination}}-{{flight.slice[0].segment[0].leg[0].departureTime | date : 'yyyyMMdd'}}/{{flight.slice[1].segment[0].leg[0].origin}}-{{flight.slice[1].segment[0].leg[0].destination}}-{{flight.slice[1].segment[0].leg[0].departureTime | date : 'yyyyMMdd'}}/1?country-code=US&input-arm-key=564A200A574A200A0zah2Hi%3DzEWMPNckq9BDJC2439&search-number-of-stops=0&direction=outbound&page=1">HERE</a>
         </iframe>
 
