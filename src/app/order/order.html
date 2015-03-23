@@ -1,6 +1,5 @@
 <header>
     <div ng-include="'components/navbar/navbar.html'"></div>
-
 </header>
 
 
@@ -52,11 +51,11 @@
                 <img class="icon active" src="{{order.getTheme().loc_icon}}">
             </i>
             <i>
-                <img class="icon active" src="../../assets/images/blank38.png">
+                <img class="icon active" src="/assets/images/blank38.png">
                 <div class="icon-tag bottom-tag tag" ng-class="{true: 'romantic-tag-bottom'}[order.getTheme().city_code === 'CHS']">${{order.getBudget()}}</div>
             </i>
             <i ng-click="order.setView('search')">
-                <img class="icon active" src="../../assets/images/NewMagnifyingGlass.png">
+                <img class="icon active" src="/assets/images/NewMagnifyingGlass.png">
             </i>
         </div>
         <table class="table table-striped">
