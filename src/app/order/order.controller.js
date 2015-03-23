@@ -25,42 +25,42 @@ angular.module('skedaddle')
             city: 'Miami',
             city_code: 'MIA',
             airport: 'MIA',
-            loc_icon: '/assets/images/island.png',
+            loc_icon: 'assets/images/island.png',
             num: '0'
             },
         {
             city: 'Denver',
             city_code: 'DEN',
             airport: 'DEN',
-            loc_icon: '/assets/images/mountain13.png',
+            loc_icon: 'assets/images/mountain13.png',
             num: '1'
             },
         {
             city: 'Charleston',
             city_code: 'CHS',
             airport: 'CHS',
-            loc_icon: '/assets/images/hearts13.png',
+            loc_icon: 'assets/images/hearts13.png',
             num: '2'
             },
         {
             city: 'Orlando',
             city_code: 'ORL',
             airport: 'MCO',
-            loc_icon: '/assets/images/theme-park.png',
+            loc_icon: 'assets/images/theme-park.png',
             num: '3'
             },
         {
             city: 'New York City',
             city_code: 'NYC',
             airport: 'JFK',
-            loc_icon: '/assets/images/bag.png',
+            loc_icon: 'assets/images/bag.png',
             num: '4'
             },
         {
             city: 'Las Vegas',
             city_code: 'LAS',
             airport: 'LAS',
-            loc_icon: '/assets/images/poker4.png',
+            loc_icon: 'assets/images/poker4.png',
             num: '5'
             }
         ];

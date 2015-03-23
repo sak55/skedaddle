@@ -20,19 +20,9 @@
             <div class="icon-label">Max-Budget</div>
             <div class="icon-row">
 
-                <!--                hides when romantic is picked-->
-                <!--
-                <label ng-if="order.selections.finalDestination != 'CHS'" class="icon-anchor" ng-repeat="maxBudget in order.singleBudget">
-    <input ng-form="myForm" name="budget" id="budget" type="radio" ng-click="order.selectBudget(maxBudget)" required/>
-    <img src="../../assets/images/blank38.png">
-    <div class="icon-tag tag">${{maxBudget}}</div>
-</label>
--->
-
-                <!--                shows when romatic is picked-->
                 <label class="icon-anchor" ng-repeat="maxBudget in {true: order.romanticBudget, false: order.singleBudget}[order.selections.finalDestination === 'CHS']">
                     <input ng-form="myForm" name="budget" id="budget" type="radio" ng-click="order.selectBudget(maxBudget)" required/>
-                    <img src="../../assets/images/blank38.png">
+                    <img src="assets/images/blank38.png">
                     <div class="icon-tag tag" ng-class="{true: 'romantic-tag'}[order.selections.finalDestination === 'CHS'] ">${{maxBudget}}</div>
                 </label>
 
@@ -51,11 +41,11 @@
                 <img class="icon active" src="{{order.getTheme().loc_icon}}">
             </i>
             <i>
-                <img class="icon active" src="/assets/images/blank38.png">
+                <img class="icon active" src="assets/images/blank38.png">
                 <div class="icon-tag bottom-tag tag" ng-class="{true: 'romantic-tag-bottom'}[order.getTheme().city_code === 'CHS']">${{order.getBudget()}}</div>
             </i>
             <i ng-click="order.setView('search')">
-                <img class="icon active" src="/assets/images/NewMagnifyingGlass.png">
+                <img class="icon active" src="assets/images/NewMagnifyingGlass.png">
             </i>
         </div>
         <table class="table table-striped">
