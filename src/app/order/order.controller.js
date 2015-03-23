@@ -6,19 +6,19 @@ angular.module('skedaddle')
 
     RestangularProvider.setDefaultHeaders({
         "Content-Type": "application/json"
-    })
-    RestangularProvider.setBaseUrl('https://www.googleapis.com/qpxExpress/v1/')
+    });
+    RestangularProvider.setBaseUrl('https://www.googleapis.com/qpxExpress/v1/');
 
 
     RestangularProvider.setDefaultRequestParams({
         key: 'AIzaSyCR6G5517GCv0MKX5Z8wjetXS4NchVfDHI'
-    })
+    });
 })
 
 .controller('OrderCtrl', function (Restangular, geo) {
 
     var self = this;
-    var data;
+    var data, flightResults;
     this.APIrequests = {};
     this.location_icons = [
         {
@@ -65,36 +65,33 @@ angular.module('skedaddle')
             }
         ];
     this.trips = {};
+    this.tripOption = this.trips.tripOption;
 
-    //array of maxbudget values
-    this.singleBudget = ["300", "400", "500", "600", "700", "800"];
-    
-    //array of romantic maxbudget values
+
+
+
+
+    this.singleBudget = [
+        "300", "400", "500", "600", "700", "800"
+    ];
     this.romanticBudget = ["600", "800", "1000", "1200", "1400", "1600"];
 
     var theTheme = "";
     var theBudget = '';
     var maxBudget;
-    
-    //Object that holds selections entered into search object
     this.selections = {}
-    
-    //selection of origin
     this.selections.finalOrigin = 'MCO';
-    
-    //selection of adult passengers
     this.selections.adultCount = 1;
 
-    //creates todays date
+
+
+
+
+
     var nowMS = Date.now()
-    
-    //number of milliseconds(ms) in one day
     var oneDayMS = 1000 * 60 * 60 * 24;
 
-    //adds one day of ms to todays value to get departure value...tommorrow
     var departureDayMS = oneDayMS + nowMS;
-    
-    //creates departure date for selection object
     var departureDay = new Date(departureDayMS);
     var monthD = departureDay.getMonth() + 1;
     var dayD = departureDay.getDate();
@@ -103,10 +100,7 @@ angular.module('skedaddle')
         (dayD < 10 ? '0' : '') + dayD;
     this.selections.finalDepartureDate = submitFinalDepartureDay;
 
-    //adds 3 days of ms to todays value to get return value...3 days from now
     var returnDayMS = nowMS + (3 * oneDayMS)
-
-    //creates return date for selection object
     var returnDay = new Date(returnDayMS);
     var monthR = returnDay.getMonth() + 1;
     var dayR = returnDay.getDate();
@@ -119,38 +113,33 @@ angular.module('skedaddle')
 
     //button Selection and object
     this.getTheme = function () {
-        //assigns the choosen theme to the selection object
         this.selections.finalDestination = theTheme.city_code;
         if (theTheme.city_code == 'CHS') {
-            //changes number of adults to 2 if the customer chooses a romantic trip
             this.selections.adultCount = 2;
         }
         return theTheme;
     }
 
-    //assigns the selectedTheme this model
     this.selectTheme = function (selectedTheme) {
         theTheme = selectedTheme;
     }
 
-    //recieves the selected maxbudget
     this.getBudget = function () {
         console.log(theBudget + " = this.getBudget");
-        //assigns the selected maxbudget to the selection object
         this.selections.finalMaxBudget = "USD" + theBudget;
         return theBudget;
     }
 
-    //assigns the selcted budget to this model
     this.selectBudget = function (selectedBudget) {
             theBudget = selectedBudget;
         }
+        //button Selection and object
 
-    //on ngclick this model will assign the my selctions object to the request object body and then make the restangular call to the api
+
     this.apiCall = function (mySelections) {
 
         console.log(mySelections);
-        //the request object
+
         this.findSkedaddle = {
             "request": {
                 "slice": [
@@ -178,24 +167,24 @@ angular.module('skedaddle')
                 "maxPrice": mySelections.finalMaxBudget,
                 "refundable": false
             }
+
         }
         console.log(this.findSkedaddle);
 
-            Restangular.one('trips').post('search', this.findSkedaddle)
-          .then(function (data) {
-              console.log(data);
+        Restangular.one('trips').post('search', this.findSkedaddle)
+            .then(function (data) {
+                console.log(data);
 
-              self.trips = data.trips;
+                self.trips = data.trips;
 
-              if (self.trips.tripOption === undefined) {
-                  console.log("NO DATA RETURNED");
-                  return alert("Please try another search there are no flights avalible");
-              } else {
-                  console.log(self.trips);
-                  return self.trips
-              };
-          });
-
+                if (self.trips.tripOption === undefined) {
+                    console.log("NO DATA RETURNED");
+                    return alert("Please try another search there are no flights avalible");
+                } else {
+                    console.log(self.trips);
+                    return self.trips
+                };
+            });
         console.log(this.findSkedaddle);
 
     }
@@ -204,23 +193,31 @@ angular.module('skedaddle')
 
 
 
+    /////////////////////////
+
+    //        this.myLocation =
+    //            if ("geolocation" in navigator) {
+    //                /* geolocation is available */
+    //            } else {
+    //                /* geolocation IS NOT available */
+    //            }
 
 
 
-    //assigns the starting view in order.html to search
+    //hide searchView on click of Search 
     this.view = 'search';
-    
-    //gets the current view in order.html
     this.getView = function () {
+        //            console.log(this.view + ' getView');
         return this.view;
     }
-    
-    //sets the view in order.html
+
     this.setView = function (selectedView) {
             this.view = selectedView;
+            //                console.log(this.view + ' setView');
         }
+        //hide searchView on click of Search 
 
-    //makes burger-bar menu close when clicked on (mobile only)  
+    //makes burger-bar menu close when clicked on    
     $(function () {
         var navMain = $("#burger-bar");
 

@@ -64,16 +64,6 @@
             <div class="icon-label">Max-Budget</div>
             <div class="icon-row">
 
-                <!--                hides when romantic is picked-->
-                <!--
-                <label ng-if="order.selections.finalDestination != 'CHS'" class="icon-anchor" ng-repeat="maxBudget in order.singleBudget">
-    <input ng-form="myForm" name="budget" id="budget" type="radio" ng-click="order.selectBudget(maxBudget)" required/>
-    <img src="../../assets/images/blank38.png">
-    <div class="icon-tag tag">${{maxBudget}}</div>
-</label>
--->
-
-                <!--                shows when romatic is picked-->
                 <label class="icon-anchor" ng-repeat="maxBudget in {true: order.romanticBudget, false: order.singleBudget}[order.selections.finalDestination === 'CHS']">
                     <input ng-form="myForm" name="budget" id="budget" type="radio" ng-click="order.selectBudget(maxBudget)" required/>
                     <img src="../../assets/images/blank38.png">
