@@ -79,7 +79,7 @@ angular.module('skedaddle')
     var theTheme = "";
     var theBudget = '';
     var maxBudget;
-   
+
     //Object that holds selections entered into search object
     this.selections = {}
 
@@ -88,11 +88,6 @@ angular.module('skedaddle')
 
     //selection of adult passengers
     this.selections.adultCount = 1;
-
-
-
-
-
 
     var nowMS = Date.now()
 
@@ -179,21 +174,21 @@ angular.module('skedaddle')
         }
         console.log(this.findSkedaddle);
 
-        Restangular.one('trips').post('search', this.findSkedaddle)
-            .then(function (data) {
-                console.log(data);
-
-                self.trips = data.trips;
-
-                if (self.trips.tripOption === undefined) {
-                    console.log("NO DATA RETURNED");
-                    return alert("Please try another search there are no flights avalible");
-                } else {
-                    console.log(self.trips);
-                    return self.trips
-                };
-            });
-        console.log(this.findSkedaddle);
+                Restangular.one('trips').post('search', this.findSkedaddle)
+                    .then(function (data) {
+                        console.log(data);
+        
+                        self.trips = data.trips;
+        
+                        if (self.trips.tripOption === undefined) {
+                            console.log("NO DATA RETURNED");
+                            return alert("Please try another search there are no flights avalible");
+                        } else {
+                            console.log(self.trips);
+                            return self.trips
+                        };
+                    });
+                console.log(this.findSkedaddle);
     }
 
     //assigns the starting view in order.html to search
@@ -218,6 +213,7 @@ angular.module('skedaddle')
             navMain.collapse('hide');
         });
     });
+
 
 
 });

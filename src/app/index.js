@@ -1,13 +1,11 @@
 'use strict';
 
-angular.module('skedaddle', ['ngAnimate', 'ngCookies', 'ngSanitize', 'restangular', 'ui.router'])
+angular.module('skedaddle', ['restangular', 'ui.router'])
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
             .state('home', {
                 url: '/',
-                templateUrl: 'app/main/main.html',
-                controller: 'MainCtrl',
-                controllerAs: 'main'
+                templateUrl: 'app/main/main.html'
             })
             .state('order', {
                 url: '/order',
@@ -17,9 +15,7 @@ angular.module('skedaddle', ['ngAnimate', 'ngCookies', 'ngSanitize', 'restangula
             })
             .state('team', {
                 url: '/team',
-                templateUrl: 'app/team/team.html',
-                controller: 'TeamCtrl',
-                controllerAs: 'team'
+                templateUrl: 'app/team/team.html'
             })
 
         $urlRouterProvider.otherwise('/');
