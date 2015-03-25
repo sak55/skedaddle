@@ -67,16 +67,18 @@
 
                     </span>
                     </span>
-                    </span>
+                    </span><br>
+                    {{flight.slice[0].segment[0].leg[0].departureTime | date : 'M/d': EST}}-{{flight.slice[1].segment[0].leg[0].departureTime | date : 'd/yy': EST}}
                 </td>
+                
                 <td>{{flight.slice[0].segment[0].leg[0].origin}} to {{flight.slice[0].segment[0].leg[0].destination}}
                     <br>
                     <span ng-repeat="airline in order.trips.data.carrier">
                         <span ng-if="airline.code === flight.slice[0].segment[0].flight.carrier">{{airline.name.replace('Corporation', '-').replace(', Inc.', ' -')}}
                         </span>
                     </span>
-                    {{flight.slice[0].segment[0].flight.number}}, {{flight.slice[0].segment[0].duration}}min.
-                    <br>{{flight.slice[0].segment[0].leg[0].departureTime | date : 'M/d/yy, h:mm a': EST}} - {{flight.slice[0].segment[0].leg[0].arrivalTime | date : 'h:mm a': EST}}
+                    {{flight.slice[0].segment[0].flight.number}}, {{flight.slice[0].segment[0].duration/60 | currency : "" : 0}}h {{(flight.slice[0].segment[0].duration % 60)}}m
+                    <br>{{flight.slice[0].segment[0].leg[0].departureTime | date : 'h:mm a': EST}} - {{flight.slice[0].segment[0].leg[0].arrivalTime | date : 'h:mm a': EST}}
                 </td>
 
                 <td>{{flight.slice[1].segment[0].leg[0].origin}} to {{flight.slice[1].segment[0].leg[0].destination}}
@@ -85,10 +87,11 @@
                         <span class="airlineName" ng-if="airline.code === flight.slice[1].segment[0].flight.carrier">{{airline.name.replace('Corporation', '-').replace(', Inc.', ' -')}}
                         </span>
                     </span>
-                    {{flight.slice[1].segment[0].flight.number}}, {{flight.slice[1].segment[0].duration}}min.
-                    <br>{{flight.slice[1].segment[0].leg[0].departureTime | date : 'M/d/yy, h:mm a': EST}} - {{flight.slice[1].segment[0].leg[0].arrivalTime | date : 'h:mm a': EST}}
+                    {{flight.slice[1].segment[0].flight.number}}, {{flight.slice[1].segment[0].duration/60 | currency : "" : 0}}h {{(flight.slice[1].segment[0].duration % 60)}}m
+                    <br>{{flight.slice[1].segment[0].leg[0].departureTime | date : 'h:mm a': EST}} - {{flight.slice[1].segment[0].leg[0].arrivalTime | date : 'h:mm a': EST}}
                 </td>
-                <td class="purchase">${{flight.saleTotal.slice(3)}}
+                
+                <td class="purchase"><strong>${{flight.saleTotal.slice(3)}}</strong>
                     <br><a class="btn btn-success" ng-click="order.setView('purchase')" href="https://www.priceline.com/fly/#/search/{{flight.slice[0].segment[0].leg[0].origin}}-{{flight.slice[0].segment[0].leg[0].destination}}-{{flight.slice[0].segment[0].leg[0].departureTime | date : 'yyyyMMdd'}}/{{flight.slice[1].segment[0].leg[0].origin}}-{{flight.slice[1].segment[0].leg[0].destination}}-{{flight.slice[1].segment[0].leg[0].departureTime | date : 'yyyyMMdd'}}/1?country-code=US&input-arm-key=564A200A574A200A0zah2Hi%3DzEWMPNckq9BDJC2439&search-number-of-stops=0&direction=outbound&page=1" target="purchaseFrame">Skedaddle!</a>
                 </td>
             </tr>
